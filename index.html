@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>අවුරුදු නැකත් 2026</title>
+    <title>අලුත් අවුරුදු නැකත් - 2026</title>
     <style>
         :root {
             --dark: #0a0a0a;
@@ -29,7 +29,7 @@
             justify-content: center; align-items: center; transition: 1s;
         }
         .load-box {
-            width: 80px; height: 80px; border: 3px solid var(--gold);
+            width: 70px; height: 70px; border: 3px solid var(--gold);
             border-top-color: var(--red); border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -38,71 +38,78 @@
         /* 🦢 Floating Elements (කැවුම්, කොකිස්, කුරුල්ලෝ) */
         .float-item {
             position: fixed; pointer-events: none; z-index: -1;
-            opacity: 0.4; font-size: 2rem; animation: floatAnim 15s linear infinite;
+            opacity: 0.3; font-size: 1.8rem; animation: floatAnim 12s linear infinite;
         }
 
         @keyframes floatAnim {
             0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.4; }
-            90% { opacity: 0.4; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
             100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
 
-        /* 🔥 Header & Text Animation */
+        /* 🔥 Header & Shaking Text */
         .header {
             padding: 50px 20px; text-align: center;
             background: linear-gradient(to bottom, #151515, transparent);
         }
         .shaking-text {
-            display: inline-block; font-size: 2.5rem; font-weight: bold;
-            color: var(--gold); text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-            animation: gentleShake 4s ease-in-out infinite;
+            display: inline-block; font-size: 2.6rem; font-weight: bold;
+            color: var(--gold); text-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+            animation: gentleShake 3.5s ease-in-out infinite;
         }
         @keyframes gentleShake {
             0%, 100% { transform: translateY(0) rotate(0deg); }
-            25% { transform: translateY(-5px) rotate(-1deg); }
-            75% { transform: translateY(5px) rotate(1deg); }
+            25% { transform: translateY(-4px) rotate(-0.8deg); }
+            75% { transform: translateY(4px) rotate(0.8deg); }
         }
 
         /* 🕰️ Premium Timer */
         .timer-wrap { text-align: center; margin-bottom: 40px; animation: fadeIn 2s; }
-        .timer-label { color: var(--orange); font-size: 0.9rem; margin-bottom: 15px; letter-spacing: 2px; }
+        .timer-label { color: var(--orange); font-size: 0.95rem; margin-bottom: 15px; letter-spacing: 1px; }
         .grid { display: flex; justify-content: center; gap: 10px; }
         .box { 
-            background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; 
-            min-width: 75px; border: 1px solid rgba(212, 175, 55, 0.2);
+            background: rgba(255,255,255,0.03); padding: 18px; border-radius: 12px; 
+            min-width: 78px; border: 1px solid rgba(212, 175, 55, 0.15);
+            backdrop-filter: blur(5px);
         }
-        .box span { font-size: 2rem; font-weight: bold; color: var(--gold); display: block; }
-        .box label { font-size: 0.7rem; color: #888; text-transform: uppercase; }
+        .box span { font-size: 2.2rem; font-weight: bold; color: var(--gold); display: block; }
+        .box label { font-size: 0.75rem; color: #777; text-transform: uppercase; }
 
-        /* 📜 List Design (April 13 - 23) */
+        /* 📜 List Design */
         .list-container { max-width: 600px; margin: 0 auto; padding: 0 20px; }
         .card {
             background: #111; margin-bottom: 12px; border-radius: 12px;
-            border: 1px solid #222; overflow: hidden; transition: 0.4s;
+            border: 1px solid #1a1a1a; overflow: hidden; transition: 0.4s;
             border-left: 4px solid var(--red);
         }
-        .card-head { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .card-head { padding: 22px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
         .card-body { 
-            max-height: 0; overflow: hidden; padding: 0 20px; color: #aaa; 
-            font-size: 0.95rem; transition: 0.5s ease; line-height: 1.6;
+            max-height: 0; overflow: hidden; padding: 0 22px; color: #999; 
+            font-size: 1rem; transition: 0.5s ease; line-height: 1.7; text-align: justify;
         }
-        .card.active { border-left-color: var(--gold); background: #181818; transform: scale(1.02); }
-        .card.active .card-body { padding-bottom: 20px; max-height: 300px; }
+        .card.active { border-left-color: var(--gold); background: #161616; transform: scale(1.02); box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .card.active .card-body { padding: 10px 22px 25px; max-height: 400px; }
+        .card.active .symbol { transform: rotate(180deg); color: var(--gold); }
         
-        .n-title { font-weight: bold; color: var(--white); }
-        .n-date { color: var(--gold); font-size: 0.8rem; margin-top: 3px; }
+        .n-title { font-weight: bold; color: var(--white); font-size: 1.1rem; }
+        .n-date { color: var(--gold); font-size: 0.85rem; margin-top: 4px; }
+        .symbol { font-size: 1.2rem; color: #444; transition: 0.4s; }
 
         /* 🎵 Player Bar */
         .player {
             position: fixed; bottom: 0; width: 100%;
-            background: rgba(0,0,0,0.9); padding: 15px; 
+            background: rgba(0,0,0,0.92); padding: 15px; 
             border-top: 1px solid var(--red);
             display: flex; justify-content: center; backdrop-filter: blur(10px);
+            z-index: 1000;
         }
-        audio { height: 35px; filter: invert(1) hue-rotate(180deg) brightness(1.5); }
+        audio { height: 35px; filter: invert(1) hue-rotate(180deg) brightness(1.4); }
 
-        .footer { text-align: center; padding: 50px; color: #444; font-size: 0.8rem; }
+        .footer { text-align: center; padding: 60px 20px; color: #555; font-size: 0.85rem; }
+        .footer b { color: var(--red); font-size: 1.4rem; display: block; margin-bottom: 4px; }
+        .footer span { color: var(--gold); letter-spacing: 1px; font-weight: bold; font-size: 0.75rem; text-transform: uppercase; }
+
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
@@ -110,15 +117,17 @@
 
 <div id="loader">
     <div class="load-box"></div>
-    <p style="margin-top: 15px; color: var(--gold); letter-spacing: 3px;">MITZII DEV</p>
+    <p style="margin-top: 15px; color: var(--gold); letter-spacing: 3px; font-size: 0.8rem;">MITZII DEV</p>
 </div>
 
-<div id="elements-bg"></div> <div class="header">
-    <div class="shaking-text">අලුත් අවුරුදු නැකත් - 2026</div>
+<div id="elements-bg"></div>
+
+<div class="header">
+    <div class="shaking-text">අලුත් අවුරුදු නැකත්</div>
 </div>
 
 <div class="timer-wrap">
-    <div class="timer-label" id="target-title">අලුත් අවුරුදු උදාවට තව</div>
+    <div class="timer-label" id="target-title">සිංහල අලුත් අවුරුදු උදාවට තව</div>
     <div class="grid">
         <div class="box"><span id="d">0</span><label>දින</label></div>
         <div class="box"><span id="h">00</span><label>පැය</label></div>
@@ -130,8 +139,8 @@
 <div class="list-container" id="litha-list"></div>
 
 <footer class="footer">
-    <b style="color: var(--red); font-size: 1.2rem;">Dev Mitzii</b><br>
-    © 2026 Sinhala Aluth Avurudu Litha
+    <b>Dev Mitzii</b>
+    <span>Supported by Sirimath</span>
 </footer>
 
 <div class="player">
@@ -142,19 +151,19 @@
 
 <script>
     const nakath = [
-        { name: "නව සඳ බැලීම", time: "2026-04-19T18:30:00", str: "අප්‍රේල් 19 ඉරිදා", desc: "අප්‍රේල් මස 19 වන ඉරිදා දින නව සඳ බැලීම මැනවි." },
-        { name: "පරණ අවුරුද්ද සඳහා ස්නානය", time: "2026-04-13T08:00:00", str: "අප්‍රේල් 13 සඳුදා", desc: "දිවුල් පත් යුෂ මිශ්‍ර නානු ගා ස්නානය කොට ඉෂ්ට දෙවියන්ගේ ආශිර්වාදය ලබා වාසය මැනවි." },
+        { name: "පරණ අවුරුද්ද සඳහා ස්නානය", time: "2026-04-13T08:00:00", str: "අප්‍රේල් 13 සඳුදා", desc: "අප්‍රේල් මස 13 වන සඳු දින දිවුල් පත් යුෂ මිශ්‍ර නානු ගා ස්නානය කොට ඉෂ්ට දෙවියන්ගේ ආශිර්වාදය ලබා වාසය මැනවි." },
         { name: "අලුත් අවුරුදු උදාව", time: "2026-04-14T09:32:00", str: "අප්‍රේල් 14 අඟහරුවාදා පෙ.ව. 09:32", desc: "අඟහරුවාදා පූර්ව භාග 09.32 ට සිංහල අලුත් අවුරුද්ද උදාවෙයි." },
-        { name: "පුණ්‍ය කාලය", time: "2026-04-14T03:08:00", str: "අප්‍රේල් 14 පෙ.ව. 03:08 සිට ප.ව. 03:56", desc: "අප්‍රේල් මස 14 වන අඟහරුවාදා පූර්ව භාග 03.08 සිට එදින අපර භාග 03.56 දක්වා පුණ්‍ය කාලය වේ." },
-        { name: "ආහාර පිසීම", time: "2026-04-14T10:41:00", str: "අප්‍රේල් 14 පෙ.ව. 10:41", desc: "රන්වන් වර්ණ වස්ත්‍රාභරණයෙන් සැරසි දකුණු දිශාව බලා ලිප් බැඳ ගිනි මොලවා කිරිබතක් පිළියෙල කර ගන්න මැනවි." },
-        { name: "වැඩ ඇල්ලීම, ගනුදෙනු කිරීම හා ආහාර අනුභවය", time: "2026-04-14T12:05:00", str: "අප්‍රේල් 14 ප.ව. 12:05", desc: "දකුණු දිශාව බලා සියලු වැඩ ඇල්ලීම, ගනුදෙනු කිරීම හා ආහාර අනුභවය සිදු කිරීම මැනවි." },
+        { name: "පුණ්‍ය කාලය", time: "2026-04-14T03:08:00", str: "අප්‍රේල් 14 පෙ.ව. 03:08 සිට ප.ව. 03:56", desc: "අප්‍රේල් මස 14 වන අඟහරුවාදා පූර්ව භාග 03.08 සිට එදින අපර භාග 03.56 දක්වා පුණ්‍ය කාලය වේ. මෙම කාලය තුළ ආගමික වත්පිළිවෙත්වල යෙදීම මැනවි." },
+        { name: "ආහාර පිසීම", time: "2026-04-14T10:41:00", str: "අප්‍රේල් 14 පෙ.ව. 10:41", desc: "රන්වන් වර්ණ වස්ත්‍රාභරණයෙන් සැරසී දකුණු දිශාව බලා ලිප් බැඳ ගිනි මොලවා කිරිබතක් සහ කැවිලි වර්ග පිළියෙල කර ගැනීම මැනවි." },
+        { name: "වැඩ ඇල්ලීම, ගනුදෙනු කිරීම හා ආහාර අනුභවය", time: "2026-04-14T12:05:00", str: "අප්‍රේල් 14 ප.ව. 12:05", desc: "රන්වන් වර්ණ වස්ත්‍රාභරණයෙන් සැරසී දකුණු දිශාව බලා සියලු වැඩ ඇල්ලීම, ගනුදෙනු කිරීම හා ආහාර අනුභවය සිදු කිරීම මැනවි." },
         { name: "හිසතෙල් ගෑම", time: "2026-04-15T06:54:00", str: "අප්‍රේල් 15 බදාදා පෙ.ව. 06:54", desc: "නැගෙනහිර දිශාව බලා කොහොඹ පත් යුෂ මිශ්‍ර නානු හා තෙල් ගා ස්නානය කිරීම මැනවි." },
+        { name: "නව සඳ බැලීම", time: "2026-04-19T18:30:00", str: "අප්‍රේල් 19 ඉරිදා", desc: "අප්‍රේල් මස 19 වන ඉරිදා දින නව සඳ බැලීම මැනවි." },
         { name: "රැකි රක්ෂා සඳහා පිටත්ව යාම", time: "2026-04-20T06:27:00", str: "අප්‍රේල් 20 සඳුදා පෙ.ව. 06:27", desc: "සුදු වර්ණ වස්ත්‍රාභරණයෙන් සැරසී දකුණු දිශාව බලා රැකී රක්ෂා සඳහා පිටත්ව යාම මැනවි." },
         { name: "පැළ සිටුවීම", time: "2026-04-23T11:36:00", str: "අප්‍රේල් 23 බ්‍රහස්පතින්දා පෙ.ව. 11:36", desc: "දකුණු දිශාව බලා පැළ සිටුවීමේ නැකත ඉටු කිරීම මැනවි." }
     ];
 
     const container = document.getElementById('litha-list');
-    let activeIdx = 2; // Default: අවුරුදු උදාව
+    let activeIdx = 1; // Default: අවුරුදු උදාව
 
     nakath.forEach((n, i) => {
         const item = document.createElement('div');
@@ -162,7 +171,7 @@
         item.innerHTML = `
             <div class="card-head" onclick="select(${i}, this)">
                 <div><div class="n-title">${n.name}</div><div class="n-date">${n.str}</div></div>
-                <div style="color: var(--gold); font-size: 0.7rem;">විස්තර ⏷</div>
+                <div class="symbol">✦</div>
             </div>
             <div class="card-body">${n.desc}</div>
         `;
@@ -183,26 +192,26 @@
             document.getElementById('h').innerText = Math.floor((diff / (1000 * 60 * 60)) % 24).toString().padStart(2, '0');
             document.getElementById('m').innerText = Math.floor((diff / 1000 / 60) % 60).toString().padStart(2, '0');
             document.getElementById('s').innerText = Math.floor((diff / 1000) % 60).toString().padStart(2, '0');
-        } else { document.querySelectorAll('.box span').forEach(s => s.innerText = "00"); }
+        } else { 
+            document.querySelectorAll('.box span').forEach(s => s.innerText = "00"); 
+        }
     }
     setInterval(countdown, 1000);
 
-    // 🌸 Floating Elements Logic (කැවුම්, කොකිස්, කුරුල්ලෝ)
+    // Floating Items
     const icons = ['🥮', '🥨', '🕊️', '🌸'];
     const bg = document.getElementById('elements-bg');
-    
     function createFloat() {
         const el = document.createElement('div');
         el.className = 'float-item';
         el.innerText = icons[Math.floor(Math.random() * icons.length)];
         el.style.left = Math.random() * 100 + 'vw';
-        el.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        el.style.animationDuration = (Math.random() * 8 + 10) + 's';
         bg.appendChild(el);
-        setTimeout(() => el.remove(), 15000);
+        setTimeout(() => el.remove(), 12000);
     }
-    setInterval(createFloat, 2000);
+    setInterval(createFloat, 2500);
 
-    // Hide Loader
     window.onload = () => {
         setTimeout(() => {
             document.getElementById('loader').style.opacity = '0';
@@ -210,7 +219,7 @@
         }, 1500);
     };
 
-    // Audio Playlist
+    // Playlist
     const audio = document.getElementById('audio-ctrl');
     const tracks = ["https://files.catbox.moe/etcs2p.mp3", "https://files.catbox.moe/u4c3b5.mp3", "https://files.catbox.moe/xlhc20.mp3"];
     let cur = 0; audio.onended = () => { cur = (cur+1)%tracks.length; audio.src = tracks[cur]; audio.play(); };

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mitzii අවුරුදු ලිත</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin:0;
+    font-family:'Noto Sans Sinhala', sans-serif;
+    background: radial-gradient(circle,#ff7b54,#ffb347);
+    color:white;
+    text-align:center;
+}
+
+/* title */
+h1 {
+    margin-top:20px;
+    font-size:30px;
+}
+
+/* countdown box */
+.countdown {
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:30px;
+    flex-wrap:wrap;
+}
+
+.box {
+    background: rgba(255,255,255,0.1);
+    padding:20px;
+    border-radius:15px;
+    min-width:80px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+/* numbers */
+.number {
+    font-size:30px;
+    font-weight:bold;
+    color:gold;
+    text-shadow:0 0 10px gold;
+}
+
+/* label */
+.label {
+    font-size:14px;
+}
+
+/* glow animation */
+@keyframes glow {
+    0% { box-shadow:0 0 10px gold; }
+    50% { box-shadow:0 0 25px gold; }
+    100% { box-shadow:0 0 10px gold; }
+}
+
+.box {
+    animation: glow 2s infinite;
+}
+
+/* rabana */
+.rabana {
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:brown;
+    margin:30px auto;
+    animation:spin 2s linear infinite;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+/* subtitle */
+.subtitle {
+    margin-top:10px;
+    opacity:0.8;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🪔 Mitzii අවුරුදු ලිත 🪔</h1>
+<div class="subtitle">2026 අවුරුද්දට තව තියෙන වෙලාව</div>
+
+<!-- COUNTDOWN -->
+<div class="countdown">
+
+<div class="box">
+<div id="days" class="number">0</div>
+<div class="label">දින</div>
+</div>
+
+<div class="box">
+<div id="hours" class="number">0</div>
+<div class="label">පැය</div>
+</div>
+
+<div class="box">
+<div id="minutes" class="number">0</div>
+<div class="label">මිනිත්තු</div>
+</div>
+
+<div class="box">
+<div id="seconds" class="number">0</div>
+<div class="label">තත්පර</div>
+</div>
+
+</div>
+
+<div class="rabana"></div>
+
+<!-- MUSIC -->
+<audio autoplay loop>
+<source src="https://files.catbox.moe/etcs2p.mp3">
+</audio>
+
+<script>
+
+/* AVURUDU TIME */
+let target = new Date("2026-04-14T09:32:00").getTime();
+
+/* COUNTDOWN FUNCTION */
+function updateCountdown(){
+    let now = new Date().getTime();
+    let diff = target - now;
+
+    if(diff < 0){
+        document.body.innerHTML = "<h1>🎉 සුභ අලුත් අවුරුද්දක් වේවා! 🎉</h1>";
+        return;
+    }
+
+    let days = Math.floor(diff / (1000*60*60*24));
+    let hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    let mins = Math.floor((diff % (1000*60*60)) / (1000*60));
+    let secs = Math.floor((diff % (1000*60)) / 1000);
+
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours;
+    document.getElementById("minutes").innerText = mins;
+    document.getElementById("seconds").innerText = secs;
+}
+
+/* UPDATE EVERY SECOND */
+setInterval(updateCountdown,1000);
+
+</script>
+
+</body>
+</html>

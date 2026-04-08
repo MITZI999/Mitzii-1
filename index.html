@@ -3,134 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mitzii Official Litha - 2026</title>
+    <title>Mitzii Premium Litha - 2026</title>
     <style>
         :root {
-            --gold-primary: #c5a059;
-            --gold-light: #f7e1a0;
-            --dark-text: #2c2c2c;
+            --royal-blue: #002366;
+            --deep-gold: #b8860b;
+            --soft-gold: #f4d03f;
+            --accent-red: #8b0000;
+            --bg-cream: #fffdf5;
             --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.92);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Times New Roman', serif; }
         
         body { 
-            background-color: #fdfaf5; 
-            color: var(--dark-text); 
+            background-color: var(--bg-cream); 
+            color: var(--royal-blue); 
             overflow-x: hidden; 
-            padding-bottom: 120px;
+            padding-bottom: 140px;
         }
 
-        /* 🎥 Background Elements */
+        /* 🎥 Background Effects */
         #bg-video {
             position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%;
-            z-index: -3; filter: opacity(0.2);
+            z-index: -3; filter: opacity(0.15) contrast(1.2);
         }
         #animation-canvas {
             position: fixed; top: 0; left: 0; z-index: -2; pointer-events: none;
         }
 
-        /* Header Design */
+        /* 🏛️ Premium Header */
         .header {
-            background: linear-gradient(135deg, var(--gold-primary), #8e6d29);
-            padding: 20px;
+            background: linear-gradient(135deg, var(--royal-blue), #001233);
+            padding: 25px;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            border-bottom: 4px solid var(--deep-gold);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
             position: sticky; top: 0; z-index: 100;
         }
         .logo { 
-            font-size: 26px; 
-            color: var(--white); 
-            letter-spacing: 2px;
+            font-size: 28px; 
+            color: var(--soft-gold); 
+            letter-spacing: 4px;
             text-transform: uppercase;
             font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
-        /* Official Main Countdown Box */
+        /* 🕰️ Official Main Countdown Section */
         .main-timer {
             text-align: center;
-            padding: 40px 20px;
-            background: var(--white);
-            border-bottom: 4px solid var(--gold-primary);
+            padding: 50px 20px;
+            background: linear-gradient(to bottom, var(--white), var(--bg-cream));
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-bottom: 2px solid var(--soft-gold);
         }
         .timer-title { 
-            color: var(--gold-primary); 
-            font-size: 1.4rem; 
+            color: var(--accent-red); 
+            font-size: 1.5rem; 
             font-weight: bold; 
-            margin-bottom: 20px;
-            text-transform: uppercase;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
         }
-        .grid { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
+        .grid { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .box { 
-            background: #fff; 
-            padding: 15px; 
-            border-radius: 5px; 
-            min-width: 75px; 
-            border: 1px solid #eee;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.03);
+            background: var(--royal-blue); 
+            padding: 20px; 
+            border-radius: 8px; 
+            min-width: 85px; 
+            border: 2px solid var(--deep-gold);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
         }
-        .box span { font-size: 28px; font-weight: bold; display: block; color: var(--gold-primary); }
-        .box label { font-size: 10px; color: #999; letter-spacing: 1px; }
+        .box:hover { transform: translateY(-5px); }
+        .box span { font-size: 32px; font-weight: bold; display: block; color: var(--soft-gold); }
+        .box label { font-size: 11px; color: var(--white); letter-spacing: 1px; }
 
         .target-time-label {
             display: inline-block;
-            padding: 8px 25px;
-            border: 1px solid var(--gold-primary);
-            color: var(--gold-primary);
+            margin-top: 30px;
+            padding: 10px 30px;
+            background: var(--accent-red);
+            color: var(--white);
             font-weight: bold;
-            border-radius: 50px;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(139, 0, 0, 0.3);
         }
 
-        /* Accordion Style List */
-        .nakath-list { padding: 0 20px; max-width: 700px; margin: 0 auto; }
+        /* 📜 Accordion Styles with Rich Colors */
+        .nakath-list { padding: 0 20px; max-width: 750px; margin: 0 auto; }
         .acc-item {
             background: var(--white);
             margin-bottom: 15px;
-            border-radius: 4px;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-            border-left: 5px solid #ddd;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border-left: 6px solid var(--royal-blue);
             transition: 0.3s;
         }
         .acc-header {
-            padding: 22px;
+            padding: 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
+            background: #fff;
         }
         .acc-content {
             padding: 0 25px;
             max-height: 0;
             overflow: hidden;
-            transition: all 0.5s ease;
-            background: #fff;
-            color: #555;
-            font-size: 1rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #fffcf0;
+            color: #333;
+            font-size: 1.05rem;
             line-height: 1.8;
             text-align: justify;
         }
-        .acc-item.active { border-left-color: var(--gold-primary); box-shadow: 0 8px 20px rgba(197, 160, 89, 0.2); }
-        .acc-item.active .acc-content { padding: 20px 25px 30px; max-height: 600px; border-top: 1px solid #f5f5f5; }
+        .acc-item.active { border-left-color: var(--accent-red); }
+        .acc-item.active .acc-content { padding: 25px 25px 35px; max-height: 600px; border-top: 1px solid #f0e6cc; }
         
-        .n-title { font-weight: bold; color: #333; font-size: 1.1rem; }
-        .n-time-info { font-size: 0.85rem; color: var(--gold-primary); margin-top: 5px; font-weight: bold; }
+        .n-title { font-weight: bold; color: var(--royal-blue); font-size: 1.2rem; }
+        .n-time-info { font-size: 0.9rem; color: var(--deep-gold); margin-top: 6px; font-weight: bold; }
 
-        /* Floating Audio Bar */
+        /* 🎵 Luxury Audio Bar */
         .audio-container {
             position: fixed; bottom: 0; width: 100%;
-            background: var(--white);
+            background: var(--royal-blue);
             padding: 20px;
-            border-top: 2px solid var(--gold-primary);
+            border-top: 4px solid var(--deep-gold);
             z-index: 1000;
-            display: flex; justify-content: center;
+            display: flex; flex-direction: column; align-items: center;
         }
-        audio { width: 100%; max-width: 600px; height: 35px; filter: sepia(20%) contrast(90%); }
+        audio { width: 100%; max-width: 600px; height: 35px; filter: invert(1) hue-rotate(180deg); }
+        .song-label { color: var(--soft-gold); font-size: 12px; margin-bottom: 8px; font-weight: bold; }
 
     </style>
 </head>
@@ -142,16 +150,16 @@
 </video>
 
 <div class="header">
-    <div class="logo">OFFICIAL LITHA 2026</div>
+    <div class="logo">MITZII LITHA 2026</div>
 </div>
 
 <div class="main-timer">
-    <div class="timer-title" id="main-title">අලුත් අවුරුදු උදාවට ඉතිරි කාලය</div>
+    <div class="timer-title" id="main-title">සිංහල අලුත් අවුරුදු උදාවට</div>
     <div class="grid">
         <div class="box"><span id="d">0</span><label>DAYS</label></div>
         <div class="box"><span id="h">00</span><label>HOURS</label></div>
-        <div class="box"><span id="m">00</span><label>MINS</label></div>
-        <div class="box"><span id="s">00</span><label>SECS</label></div>
+        <div class="box"><span id="m">00</span><label>MINUTES</label></div>
+        <div class="box"><span id="s">00</span><label>SECONDS</label></div>
     </div>
     <div class="target-time-label" id="target-display">අප්‍රේල් 14 පූර්ව භාග 09:32</div>
 </div>
@@ -161,13 +169,13 @@
 </div>
 
 <div class="audio-container">
+    <div class="song-label">අවුරුදු සංගීතය වාදනය වේ</div>
     <audio id="main-audio" controls autoplay>
         <source src="https://files.catbox.moe/etcs2p.mp3" type="audio/mpeg">
     </audio>
 </div>
 
 <script>
-    // 2026 නිවැරදි දත්ත (Emoji ඉවත් කරන ලදි)
     const nakathData = [
         { name: "නව සඳ බැලීම", time: "2026-03-20T18:00:00", str: "මාර්තු 20 සහ අප්‍රේල් 19", desc: "අධින වසන්ත වර්ෂය සඳහා මාර්තු මස 20 වන සිකුරාදා දින ද, අධිවර්ෂ සූර්ය වර්ෂය සඳහා අප්‍රේල් මස 19 වන ඉරිදා ද නව සඳ බැලීම මැනවි." },
         { name: "පරණ අවුරුද්ද සඳහා ස්නානය", time: "2026-04-13T08:00:00", str: "අප්‍රේල් 13 සඳුදා", desc: "අප්‍රේල් මස 13 වන සඳු දින දිවුල් පත් යුෂ මිශ්‍ර නානු ගා ස්නානය කොට ඉෂ්ට දෙවියන්ගේ ආශිර්වාදය ලබා වාසය මැනවි." },
@@ -181,7 +189,7 @@
     ];
 
     const container = document.getElementById('items-container');
-    let activeIndex = 2; // Default අවුරුදු උදාව
+    let activeIndex = 2;
 
     nakathData.forEach((n, i) => {
         const item = document.createElement('div');
@@ -192,7 +200,7 @@
                     <div class="n-title">${n.name}</div>
                     <div class="n-time-info">${n.str}</div>
                 </div>
-                <div style="font-size: 12px; color: #ccc;">CLICK TO VIEW</div>
+                <div style="font-size: 11px; color: var(--deep-gold); letter-spacing: 1px;">VIEW DETAILS</div>
             </div>
             <div class="acc-content">${n.desc}</div>
         `;
@@ -204,14 +212,13 @@
         element.parentElement.classList.add('active');
         activeIndex = index;
         document.getElementById('target-display').innerText = nakathData[index].str;
+        document.getElementById('main-title').innerText = nakathData[index].name + "ට";
     }
 
-    // Timer Logic
     function runTimer() {
         const now = new Date().getTime();
         const target = new Date(nakathData[activeIndex].time).getTime();
         const diff = target - now;
-
         if (diff > 0) {
             document.getElementById('d').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
             document.getElementById('h').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
@@ -223,66 +230,53 @@
     }
     setInterval(runTimer, 1000);
 
-    // Playlist Logic
     const playlist = ["https://files.catbox.moe/etcs2p.mp3", "https://files.catbox.moe/u4c3b5.mp3", "https://files.catbox.moe/xlhc20.mp3"];
     let songIdx = 0;
     const audio = document.getElementById('main-audio');
-    audio.onended = () => {
-        songIdx = (songIdx + 1) % playlist.length;
-        audio.src = playlist[songIdx];
-        audio.play();
-    };
+    audio.onended = () => { songIdx = (songIdx + 1) % playlist.length; audio.src = playlist[songIdx]; audio.play(); };
 
-    // 🕊️ Flying Birds & Particles Animation
+    // 🕊️ Flying Birds & Gold Particles Animation
     const canvas = document.getElementById('animation-canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
     let birds = [];
-    for(let i=0; i<6; i++) {
-        birds.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * (canvas.height/2),
-            speed: Math.random() * 2 + 1,
-            wing: 0
-        });
+    for(let i=0; i<7; i++) {
+        birds.push({ x: Math.random() * canvas.width, y: Math.random() * (canvas.height/2), s: Math.random() * 1.5 + 0.5, w: 0 });
     }
 
-    let particles = [];
-    for(let i=0; i<40; i++) {
-        particles.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*2, s: Math.random()*0.5 });
+    let goldDust = [];
+    for(let i=0; i<50; i++) {
+        goldDust.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*1.5, speed: Math.random()*0.3 });
     }
 
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
-        // Draw Particles
-        ctx.fillStyle = "rgba(197, 160, 89, 0.3)";
-        particles.forEach(p => {
+        // Particles
+        ctx.fillStyle = "rgba(184, 134, 11, 0.4)";
+        goldDust.forEach(p => {
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
             ctx.fill();
-            p.y += p.s;
+            p.y += p.speed;
             if(p.y > canvas.height) p.y = -10;
         });
 
-        // Draw Birds (Simplified V-shape animation)
-        ctx.strokeStyle = "rgba(150, 150, 150, 0.4)";
+        // Birds
+        ctx.strokeStyle = "rgba(0, 35, 102, 0.2)";
         ctx.lineWidth = 2;
         birds.forEach(b => {
             ctx.beginPath();
-            let wingY = Math.sin(b.wing) * 5;
-            ctx.moveTo(b.x, b.y + wingY);
-            ctx.lineTo(b.x + 10, b.y);
-            ctx.lineTo(b.x + 20, b.y + wingY);
+            let wing = Math.sin(b.w) * 6;
+            ctx.moveTo(b.x, b.y + wing);
+            ctx.lineTo(b.x + 12, b.y);
+            ctx.lineTo(b.x + 24, b.y + wing);
             ctx.stroke();
-            
-            b.x += b.speed;
-            b.wing += 0.1;
-            if(b.x > canvas.width) b.x = -20;
+            b.x += b.s; b.w += 0.08;
+            if(b.x > canvas.width) b.x = -30;
         });
-
         requestAnimationFrame(animate);
     }
     animate();

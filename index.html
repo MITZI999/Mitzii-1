@@ -3,239 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>අවුරුදු නැකත් 2026</title>
+    <title>අවුරුදු නැකත් - 2026</title>
     <style>
         :root {
-            --bg-dark: #0a0a0a;
-            --card-dark: #141414;
-            --soft-red: #e74c3c;
-            --soft-orange: #f39c12;
-            --soft-yellow: #f1c40f;
-            --text-silver: #d1d1d1;
+            --gold: #c5a059;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.9);
+            --dark-text: #2c2c2c;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Times New Roman', serif; }
         
-        body { 
-            background-color: var(--bg-dark); 
-            color: var(--text-silver); 
-            overflow-x: hidden;
-            padding-bottom: 120px;
+        body { background-color: #fdfaf5; color: var(--dark-text); overflow: hidden; padding-bottom: 120px; }
+
+        /* 🔄 Loading Screen */
+        #loading-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff; z-index: 9999; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; transition: opacity 1s ease;
+        }
+        #loading-screen img { width: 150px; border-radius: 50%; animation: pulse 2s infinite; }
+        #loading-screen p { margin-top: 20px; color: var(--gold); font-size: 1.2rem; font-weight: bold; }
+
+        @keyframes pulse { from { transform: scale(1); opacity: 1; } to { transform: scale(1.1); opacity: 0.7; } }
+
+        /* 🎥 Background Elements */
+        #bg-video {
+            position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%;
+            z-index: -3; filter: opacity(0.2);
+        }
+        #animation-canvas {
+            position: fixed; top: 0; left: 0; z-index: -2; pointer-events: none;
         }
 
-        /* 🕊️ Background Animation */
-        #bg-canvas {
-            position: fixed; top: 0; left: 0; z-index: -1; pointer-events: none;
-            opacity: 0.2;
-        }
-
-        /* ✨ Animated Header */
+        /* Header (Logo from Image) */
         .header {
-            padding: 60px 20px 40px;
+            background: linear-gradient(to right, var(--gold), #f7e1a0);
+            padding: 10px 20px;
+            display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header img { height: 60px; }
+
+        /* Main Countdown Section */
+        .main-timer {
             text-align: center;
+            padding: 50px 20px;
+            background: var(--white);
+            border-bottom: 1px solid #eee;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease-out;
         }
-
-        .floating-header {
-            display: inline-block;
-            font-size: 2.5rem;
-            font-weight: bold;
-            letter-spacing: 4px;
-            background: linear-gradient(45deg, var(--soft-red), var(--soft-orange), var(--soft-yellow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: wave 4s ease-in-out infinite;
-        }
-
-        @keyframes wave {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* 🕰️ Premium Timer */
-        .timer-container {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        .timer-label {
-            color: var(--soft-orange);
-            font-size: 0.9rem;
-            margin-bottom: 25px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-        .grid { display: flex; justify-content: center; gap: 12px; }
+        .timer-title { color: var(--gold); font-size: 1.4rem; font-weight: bold; margin-bottom: 20px; }
+        .grid { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
         .box { 
-            background: var(--card-dark); 
+            background: #f8f8f8; 
             padding: 15px; 
-            border-radius: 12px; 
+            border-radius: 10px; 
             min-width: 75px; 
-            border: 1px solid rgba(243, 156, 18, 0.1);
+            border: 1px solid #eee;
         }
-        .box span { 
-            font-size: 2rem; 
-            font-weight: bold; 
-            display: block; 
-            color: var(--soft-yellow);
-            animation: pulse 2s infinite;
-        }
-        .box label { font-size: 0.7rem; color: #555; }
+        .box span { font-size: 28px; font-weight: bold; display: block; color: #222; }
+        .box label { font-size: 10px; color: var(--gold); }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        /* 📜 Sorted List Design */
-        .list-wrapper { max-width: 650px; margin: 0 auto; padding: 0 20px; }
-        .nakath-card {
-            background: var(--card-dark);
-            margin-bottom: 12px;
-            border-radius: 10px;
-            border-left: 3px solid var(--soft-red);
+        /* Accordion List */
+        .nakath-list { padding: 0 20px; max-width: 700px; margin: 0 auto; }
+        .acc-item {
+            background: var(--white);
+            margin-bottom: 15px;
+            border-radius: 4px;
             overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            border-left: 5px solid #ddd;
             transition: 0.3s;
+            animation: fadeInUp 0.8s ease;
         }
-        .nakath-card.active { border-left-color: var(--soft-yellow); background: #1a1a1a; }
-        .card-top { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-        .card-body { 
-            max-height: 0; 
-            overflow: hidden; 
-            padding: 0 20px; 
-            color: #999; 
-            font-size: 0.95rem; 
-            transition: 0.4s ease;
+        .acc-header {
+            padding: 22px;
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer;
+        }
+        .acc-content {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            background: #fff;
+            color: #555;
+            font-size: 1rem;
             line-height: 1.8;
             text-align: justify;
         }
-        .nakath-card.active .card-body { padding-bottom: 25px; max-height: 500px; }
+        .acc-item.active { border-left-color: var(--gold); }
+        .acc-item.active .acc-content { padding: 20px 25px 30px; max-height: 600px; border-top: 1px solid #f5f5f5; }
         
-        .n-title { font-weight: bold; color: #fff; font-size: 1.1rem; animation: textMove 5s infinite; }
-        .n-date { color: var(--soft-orange); font-size: 0.85rem; margin-top: 4px; }
+        .n-title { font-weight: bold; color: #333; font-size: 1.1rem; }
+        .n-time-info { font-size: 0.85rem; color: var(--gold); margin-top: 5px; font-weight: bold; }
 
-        @keyframes textMove {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(3px); }
-        }
-
-        /* 🎖️ Footer */
-        .footer {
-            text-align: center;
-            padding: 60px 20px;
-            color: #333;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-        }
-        .footer b { color: var(--soft-red); display: block; font-size: 1.2rem; margin-bottom: 5px; }
-
-        /* 🎵 Music Player */
-        .player-bar {
+        /* Floating Audio Bar */
+        .audio-container {
             position: fixed; bottom: 0; width: 100%;
-            background: rgba(10,10,10,0.95);
-            padding: 15px; border-top: 1px solid #222;
-            display: flex; justify-content: center; backdrop-filter: blur(5px);
+            background: var(--white);
+            padding: 20px;
+            border-top: 1px solid var(--gold);
+            z-index: 1000;
+            display: flex; flex-direction: column; align-items: center;
         }
-        audio { height: 30px; filter: invert(0.8) hue-rotate(140deg); opacity: 0.6; }
+        audio { width: 100%; max-width: 600px; height: 35px; filter: grayscale(1) contrast(0.8); }
+        .song-name { color: var(--gold); font-size: 11px; margin-bottom: 5px; font-weight: bold; }
 
+        /* Animations */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-<canvas id="bg-canvas"></canvas>
+<div id="loading-screen">
+    <img src="https://files.catbox.moe/or3opk.jpg" alt="Loading">
+    <p>Mitzii Dev</p>
+</div>
+
+<canvas id="animation-canvas"></canvas>
+<video autoplay loop muted playsinline id="bg-video">
+    <source src="1000344419.mp4" type="video/mp4">
+</video>
 
 <div class="header">
-    <div class="floating-header">අවුරුදු නැකත්</div>
+    <img src="https://files.catbox.moe/29oqwm.jpg" alt="Mitzii Litha">
 </div>
 
-<div class="timer-container">
-    <div class="timer-label" id="target-title">අලුත් අවුරුදු උදාවට තව</div>
+<div class="main-timer">
+    <div class="timer-title" id="main-title">සිංහල අලුත් අවුරුදු උදාවට</div>
     <div class="grid">
-        <div class="box"><span id="d">0</span><label>Days</label></div>
-        <div class="box"><span id="h">00</span><label>Hours</label></div>
-        <div class="box"><span id="m">00</span><label>Mins</label></div>
-        <div class="box"><span id="s">00</span><label>Secs</label></div>
+        <div class="box"><span id="d">0</span><label>දින</label></div>
+        <div class="box"><span id="h">00</span><label>පැය</label></div>
+        <div class="box"><span id="m">00</span><label>මිනිත්තු</label></div>
+        <div class="box"><span id="s">00</span><label>තත්පර</label></div>
     </div>
+    <div style="font-weight: bold; color: var(--gold);" id="target-display">අප්‍රේල් 14 පෙ.ව. 09:32</div>
 </div>
 
-<div class="list-wrapper" id="nakath-list"></div>
+<div class="nakath-list">
+    <div id="items-container"></div>
+</div>
 
-<footer class="footer">
-    <b>Dev Mitzii</b>
-    SUPPORTED BY SIRIMATH
-</footer>
-
-<div class="player-bar">
-    <audio id="player" controls autoplay>
+<div class="audio-container">
+    <div class="song-name">අවුරුදු සංගීතය වාදනය වේ...</div>
+    <audio id="main-audio" controls autoplay>
         <source src="https://files.catbox.moe/etcs2p.mp3" type="audio/mpeg">
     </audio>
 </div>
 
 <script>
+    // ✅ 2026 සියලුම නැකත් දත්ත (නිවැරදි වේලාවන්)
     const nakathData = [
+        { name: "නව සඳ බැලීම", time: "2026-03-20T18:00:00", str: "මාර්තු 20 සහ අප්‍රේල් 19", desc: "අධින වසන්ත වර්ෂය සඳහා මාර්තු මස 20 වන සිකුරාදා දින ද, අධිවර්ෂ සූර්ය වර්ෂය සඳහා අප්‍රේල් මස 19 වන ඉරිදා ද නව සඳ බැලීම මැනවි." },
         { name: "පරණ අවුරුද්ද සඳහා ස්නානය", time: "2026-04-13T08:00:00", str: "අප්‍රේල් 13 සඳුදා", desc: "අප්‍රේල් මස 13 වන සඳු දින දිවුල් පත් යුෂ මිශ්‍ර නානු ගා ස්නානය කොට ඉෂ්ට දෙවියන්ගේ ආශිර්වාදය ලබා වාසය මැනවි." },
-        { name: "අලුත් අවුරුදු උදාව", time: "2026-04-14T09:32:00", str: "අප්‍රේල් 14 අඟහරුවාදා පෙ.ව. 09:32", desc: "අප්‍රේල් මස 14 වන අඟහරුවාදා පූර්ව භාග 09.32 ට සිංහල අලුත් අවුරුද්ද උදාවෙයි." },
-        { name: "පුණ්‍ය කාලය", time: "2026-04-14T03:08:00", str: "අප්‍රේල් 14 පෙ.ව. 03:08 සිට ප.ව. 03:56", desc: "අප්‍රේල් මස 14 වන අඟහරුවාදා පූර්ව භාග 03.08 සිට එදින අපර භාග 03.56 දක්වා පුණ්‍ය කාලය වේ. මෙම කාලය තුළ ආගමික වත්පිළිවෙත්වල යෙදීම යහපත් වේ." },
-        { name: "ආහාර පිසීම", time: "2026-04-14T10:41:00", str: "අප්‍රේල් 14 අඟහරුවාදා පෙ.ව. 10:41", desc: "රන්වන් වර්ණ වස්ත්‍රාභරණයෙන් සැරසි දකුණු දිශාව බලා ලිප් බැඳ ගිනි මොලවා කිරිබතක් හා කැවිලි පිළියෙල කර ගන්න මැනවි." },
-        { name: "වැඩ ඇල්ලීම හා ආහාර අනුභවය", time: "2026-04-14T12:05:00", str: "අප්‍රේල් 14 අඟහරුවාදා ප.ව. 12:05", desc: "රන්වන් වර්ණ වස්ත්‍රාභරණයෙන් සැරසි දකුණු දිශාව බලා සියලු වැඩ ඇල්ලීම, ගනුදෙනු කිරීම හා ආහාර අනුභවය ආරම්භ කිරීම මැනවි." },
-        { name: "හිසතෙල් ගෑම", time: "2026-04-15T06:54:00", str: "අප්‍රේල් 15 බදාදා පෙ.ව. 06:54", desc: "නැගෙනහිර දිශාව බලා හිසට කොහොඹ පත් ද පයට කොළොන් පත් ද තබා කොහොඹ පත් යුෂ මිශ්‍ර නානු හා තෙල් ගා ස්නානය මැනවි." },
-        { name: "රැකී රක්ෂා සඳහා පිටත්ව යාම", time: "2026-04-20T06:27:00", str: "අප්‍රේල් 20 සඳුදා පෙ.ව. 06:27", desc: "සුදු වර්ණ වස්ත්‍රාභරණයෙන් සැරසි කිරිබතක් හා කැවිලි අනුභව කර දකුණු දිශාව බලා රැකී රක්ෂා සඳහා පිටත්ව යාම මැනවි." },
-        { name: "පැළ සිටුවීම", time: "2026-04-23T11:36:00", str: "අප්‍රේල් 23 බ්‍රහස්පතින්දා පෙ.ව. 11:36", desc: "දකුණු දිශාව බලා පැළ සිටුවීමේ කටයුතු සිදු කිරීම මැනවි." },
-        { name: "නව සඳ බැලීම", time: "2026-04-19T18:30:00", str: "අප්‍රේල් 19 ඉරිදා ප.ව. 06:30 න් පසු", desc: "නව අවුරුද්ද සඳහා අප්‍රේල් මස 19 වන ඉරිදා දින නව සඳ බැලීම මැනවි." }
+        { name: "අලුත් අවුරුදු උදාව", time: "2026-04-14T09:32:00", str: "අප්‍රේල් 14 පෙ.ව. 09:32", desc: "අප්‍රේල් මස 14 වන අඟහරුවාදා පූර්ව භාග 09.32 ට සිංහල අලුත් අවුරුද්ද උදාවෙයි." },
+        { name: "පුණ්‍ය කාලය", time: "2026-04-14T03:08:00", str: "අප්‍රේල් 14 පෙ.ව. 03:08 - ප.ව. 03:56", desc: "අප්‍රේල් මස 14 වන අඟහරුවාදා පූර්ව භාග 03.08 සිට එදින අපර භාග 03.56 දක්වා පුණ්‍ය කාලය වේ. මෙම කාලය තුළ ආහාර ගැනීමෙන් වලකිමින්, ආගමික කටයුතු වල යෙදී සිටීම යහපත් වේ. පුණ්‍ය කාලය ආරම්භ වීමට පෙර ආහාර ගෙන, පුණ්‍ය කාලය අවසන් වූ පසු ආහාර ගත යුතුය." },
+        { name: "ආහාර පිසීම", time: "2026-04-14T10:41:00", str: "අප්‍රේල් 14 පෙ.ව. 10:41", desc: "රන්වන් වර්ණ වස්ත්‍රාභරණයෙන් සැරසි දකුණු දිශාව බලා ලිප් බැඳ ගිනි මොලවා කිරිබතක්, කැවිලි වර්ගයක් හා දී කිරිබත පිළියෙල කර ගන්න මැනවි." },
+        { name: "වැඩ ඇල්ලීම, ගනුදෙනු කිරීම හා ආහාර අනුභවය", time: "2026-04-14T12:05:00", str: "අප්‍රේල් 14 ප.ව. 12:05", desc: "රන්වන් වර්ණ වස්ත්‍රාභරණයෙන් සැරසි දකුණු දිශාව බලා සියලු වැඩ ඇල්ලීම, ගනුදෙනු කිරීම හා ආහාර අනුභවය ආරම්භ කිරීම මැනවි." },
+        { name: "හිසතෙල් ගෑම", time: "2026-04-15T06:54:00", str: "අප්‍රේල් 15 පෙ.ව. 06:54", desc: "නැගෙනහිර දිශාව බලා හිස කොහොඹ පත්, පයුර් කොළොන් පත් තබා පවිත‍්‍ර වස්ත්‍රාභරණයෙන් සැරසි කොහොඹ පත් යුෂ මිශ්‍ර නානු හා තෙල් ගා ස්නානය කිරීම මැනවි." },
+        { name: "රැකි රක්ෂා සඳහා පිටත්ව යාම", time: "2026-04-20T06:27:00", str: "අප්‍රේල් 20 පෙ.ව. 06:27", desc: "සුදු වර්ණ වස්ත්‍රාභරණයෙන් සැරසි කිරිබතක් සහ කැවිලි මිශ්‍ර කටුවක් අනුභව කර දකුණු දිශාව බලා පිටත්ව යාම මැනවි." },
+        { name: "පැළ සිටුවීම", time: "2026-04-23T11:36:00", str: "අප්‍රේල් 23 පෙ.ව. 11:36", desc: "දකුණු දිශාව බලා පැළ සිටුවීම මැනවි." }
     ];
 
-    const listElement = document.getElementById('nakath-list');
-    let currentActive = 1; // Default: අවුරුදු උදාව
+    const container = document.getElementById('items-container');
+    let activeIndex = 2; // Default අවුරුදු උදාව (index 2)
 
-    nakathData.forEach((item, index) => {
-        const card = document.createElement('div');
-        card.className = `nakath-card ${index === currentActive ? 'active' : ''}`;
-        card.innerHTML = `
-            <div class="card-top" onclick="setActive(${index}, this)">
-                <div><div class="n-title">${item.name}</div><div class="n-date">${item.str}</div></div>
-                <div style="color: #333;">✦</div>
+    nakathData.forEach((n, i) => {
+        const item = document.createElement('div');
+        item.className = `acc-item ${i === activeIndex ? 'active' : ''}`;
+        item.innerHTML = `
+            <div class="acc-header" onclick="updateMainTimer(${i}, this)">
+                <div>
+                    <div class="n-title">${n.name}</div>
+                    <div class="n-time-info">${n.str}</div>
+                </div>
+                <div style="font-size: 10px; color: var(--gold);">DETAILS</div>
             </div>
-            <div class="card-body">${item.desc}</div>
+            <div class="acc-content">${n.desc}</div>
         `;
-        listElement.appendChild(card);
+        container.appendChild(item);
     });
 
-    function setActive(idx, el) {
-        document.querySelectorAll('.nakath-card').forEach(c => c.classList.remove('active'));
-        el.parentElement.classList.add('active');
-        currentActive = idx;
-        document.getElementById('target-title').innerText = nakathData[idx].name + "ට තව";
+    function updateMainTimer(index, element) {
+        document.querySelectorAll('.acc-item').forEach(el => el.classList.remove('active'));
+        element.parentElement.classList.add('active');
+        activeIndex = index;
+        document.getElementById('target-display').innerText = nakathData[index].str;
+        document.getElementById('main-title').innerText = nakathData[index].name + "ට";
     }
 
+    // Timer Logic
     function runTimer() {
-        const diff = new Date(nakathData[currentActive].time) - new Date();
+        const now = new Date().getTime();
+        const target = new Date(nakathData[activeIndex].time).getTime();
+        const diff = target - now;
+
         if (diff > 0) {
             document.getElementById('d').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById('h').innerText = Math.floor((diff / (1000 * 60 * 60)) % 24).toString().padStart(2, '0');
-            document.getElementById('m').innerText = Math.floor((diff / 1000 / 60) % 60).toString().padStart(2, '0');
-            document.getElementById('s').innerText = Math.floor((diff / 1000) % 60).toString().padStart(2, '0');
-        } else { document.querySelectorAll('.box span').forEach(s => s.innerText = "00"); }
+            document.getElementById('h').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            document.getElementById('m').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            document.getElementById('s').innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+        } else {
+            document.querySelectorAll('.box span').forEach(s => s.innerText = "00");
+        }
     }
     setInterval(runTimer, 1000);
 
-    // 🕊️ Subtle Bird Animation
-    const canvas = document.getElementById('bg-canvas');
+    // Playlist Logic
+    const playlist = ["https://files.catbox.moe/etcs2p.mp3", "https://files.catbox.moe/u4c3b5.mp3", "https://files.catbox.moe/xlhc20.mp3"];
+    let songIdx = 0;
+    const audio = document.getElementById('main-audio');
+    audio.onended = () => {
+        songIdx = (songIdx + 1) % playlist.length;
+        audio.src = playlist[songIdx];
+        audio.play();
+    };
+
+    // 🕊️ Flying Birds Animation (चाम & Official)
+    const canvas = document.getElementById('animation-canvas');
     const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-    let birds = []; for(let i=0; i<6; i++) birds.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height/2, s: Math.random()*0.5+0.2, w: 0 });
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-    function draw() {
-        ctx.clearRect(0,0,canvas.width, canvas.height);
-        ctx.strokeStyle = "rgba(243, 156, 18, 0.15)";
+    let birds = [];
+    for(let i=0; i<6; i++) {
+        birds.push({ x: Math.random() * canvas.width, y: Math.random() * (canvas.height/2), s: Math.random() * 1.5 + 0.5, w: 0 });
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw Birds (Simplified V-shape art)
+        ctx.strokeStyle = "rgba(197, 160, 89, 0.2)";
+        ctx.lineWidth = 2;
         birds.forEach(b => {
-            ctx.beginPath(); let wing = Math.sin(b.w)*4;
-            ctx.moveTo(b.x, b.y+wing); ctx.lineTo(b.x+10, b.y); ctx.lineTo(b.x+20, b.y+wing);
-            ctx.stroke(); b.x += b.s; b.w += 0.08; if(b.x > canvas.width) b.x = -30;
+            ctx.beginPath();
+            let wingY = Math.sin(b.w) * 5;
+            ctx.moveTo(b.x, b.y + wingY);
+            ctx.lineTo(b.x + 10, b.y);
+            ctx.lineTo(b.x + 20, b.y + wingY);
+            ctx.stroke();
+            b.x += b.s; b.w += 0.1;
+            if(b.x > canvas.width) b.x = -25;
         });
-        requestAnimationFrame(draw);
-    } draw();
+        requestAnimationFrame(animate);
+    }
+    animate();
 
-    const audio = document.getElementById('player');
-    const tracks = ["https://files.catbox.moe/etcs2p.mp3", "https://files.catbox.moe/u4c3b5.mp3", "https://files.catbox.moe/xlhc20.mp3"];
-    let t = 0; audio.onended = () => { t = (t+1)%tracks.length; audio.src = tracks[t]; audio.play(); };
+    window.onresize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+
+    // 🔄 Loading Screen Logic
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const screen = document.getElementById('loading-screen');
+            screen.style.opacity = '0';
+            setTimeout(() => screen.style.display = 'none', 1000);
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }, 1500); // Show loading for at least 1.5 seconds
+    });
 </script>
+
 </body>
 </html>

@@ -1,410 +1,199 @@
 <!DOCTYPE html>
 <html lang="si">
-
-<head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5TRJGZ85S"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-Z5TRJGZ85S');
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="litha, lithalk, jothishya, jothisha vidayawa, awurudu nakath, ලිත, ජ්‍යොතිෂ විද්‍යාව, ජ්‍යොතිෂය, සිංහල අවුරුදු චාරිත්‍ර">
-    <title>Awurudu Nakath</title>
-    <link rel="stylesheet" href="../awuruduNakath/style.css">
-    <link rel="shortcut icon" href="../_resource/photos/logo/logo gold1.png" type="image/x-icon">
-
-</head>
-
-<body onload="getNakath();">
-
-    <!-- Header Start-->
-    <!DOCTYPE html>
-<html lang="si">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../header/style.css" />
-</head>
-
-<body>
-
-    <header class="header--container">
-        <nav class="header--navbar" id="navbar">
-            <div class="header--div1">
-                <div class="header--div2">
-                    <div onclick="logoclick();" class="header--logo1" style="background-image:url(../_resource/photos/logo/logo\ black.png);">
-                    </div>
-
-                    <div class="header--div3">
-                        <a href="https://www.facebook.com/profile.php?id=61574091216938"><img class="header--social" src="../_resource/photos/socialMedia/Facebook App Symbol.png"
-                                alt=""></a>
-                        <!-- <h3 class="header--contact">customer.contact@litha.com</h3> -->
-                    </div>
-                </div>
-
-            </div>
-            <div class="header--div4">
-                <div class="header--div5">
-                    <a href="../home/index.php"><img src="../_resource/photos/header/home.png" alt=""></a>
-                    <h3 style="opacity: 0.7;">|</h3>
-                    <a class="header--links" href="../lagnaPalapala/index.php">ලග්න පලාපල</a>
-                    <h3 style="opacity: 0.7;">|</h3>
-                    <a class="header--links" href="../awuruduNakath/index.php">අවුරුදු නැකත්</a>
-                    <h3 style="opacity: 0.7;">|</h3>
-                    <a class="header--links" href="../rahuKalaya/index.php">රාහු කාලය</a>
-                    <h3 style="opacity: 0.7;">|</h3>
-                    <a class="header--links" href="../pohoyaDina/index.php">සතර පොහෝය</a>
-                    <h3 style="opacity: 0.7;">|</h3>
-                    <a class="header--links" href="../mahaDasaChacraya/index.php">මහා දසා චක්‍රය</a>
-                    <h3 style="opacity: 0.7;">|</h3>
-                    <a class="header--links" href="../subaDawas/index.php">සුභ දවස්</a>
-                    <h3 style="opacity: 0.7;">|</h3>
-                    <a class="header--links" href="../rohalNamawaliya/index.php">රෝහල් නාමාවලිය</a>
-                    <h3 style="opacity: 0.7;">|</h3>
-                    <a class="header--links" href="../nagaraNamawaliya/index.php">නගර නාමාවලිය</a>
-                    <h3 style="opacity: 0.7;">|</h3>
-                    <a class="header--links" href="../kalaHorawa/index.php">කාල හෝරාව</a>
-                    <a class="header--links" href="../home/index.php#section03"><img src="../_resource/photos/header/Loupe.png" alt=""></a>
-                </div>
-            </div>
-
-            <img src="../_resource/photos/logo/logo black.png" class="header--logo" alt="">
-            <button class="header--toggleBtn" onclick="toggleSideBar();">
-
-                <div class="header--toggleBtnRow"></div>
-                <div class="header--toggleBtnRow"></div>
-                <div class="header--lastToggleBtnRow" id="lastRow"></div>
-            </button>
-        </nav>
-        <div class="header--sidebar" id="sidebar">
-            <div class="header--sidebarContent">
-                <img src="../_resource/photos/header/Delete.png" class="header--closeBtn" onclick="toggleSideBar();" />
-                <img src="../_resource/photos/logo/logo black.png" class="header--sidebarLogo" />
-                <div class="header--sidebarItems">
-                    <a class="header--sidebarItem" href="../home/index.php"><img src="../_resource/photos/header/home white.png" alt=""></a>
-                    <a href="../lagnaPalapala/index.php" class="header--sidebarItem">ලග්න පලාපල</a>
-                    <a href="../awuruduNakath/index.php" class="header--sidebarItem">අවුරුදු නැකත්</a>
-                    <a href="../rahuKalaya/index.php" class="header--sidebarItem">රාහු කාලය</a>
-                    <a href="../pohoyaDina/index.php" class="header--sidebarItem">සතර පොහෝය</a>
-                    <a href="../mahaDasaChacraya/index.php" class="header--sidebarItem">මහා දසා චක්‍රය</a>
-                    <a href="../subaDawas/index.php" class="header--sidebarItem">සුභ දවස්</a>
-                    <a href="../rohalNamawaliya/index.php" class="header--sidebarItem">රෝහල් නාමාවලිය</a>
-                    <a class="header--sidebarItem" href="../nagaraNamawaliya/index.php">නගර නාමාවලිය</a>
-                    <a href="../kalaHorawa/index.php" class="header--sidebarItem">කාල හෝරාව</a>
-                    <a href="../home/index.php#section03" class="header--sidebarItem"><img src="../_resource/photos/header/Loupe.png" alt=""></a>
-                    <a href="https://www.facebook.com/profile.php?id=61574091216938" class="header--sidebarItem"><img src="../_resource/photos/socialMedia/Facebook App Symbol.png" alt=""></a>
-
-
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <script src="../header/script.js"></script>
-
-</body>
-
-</html>    <!-- Header End-->
-
-    <!-- section 01 Start-->
-    <section class="awurudu--section01" id="section01">
-        <!-- onclick="toggleFullScreen()" -->
-        <div class="awurudu--section1--div1">
-            <div class="awurudu--section1--div2">
-                <div class="awurudu--section1--detailsdiv">
-                    <div class="awurudu--section1--titlediv">
-                        <h1 class="awurudu--section1--title"><span id="nakathName"></span>ට තව,</h1>
-                    </div>
-                    <div class="awurudu--section1--countdiv">
-                        <div class="hero connect-page">
-                            <div class="container">
-                                <div class="hero-body">
-                                    <div class="campaign campaign-0">
-                                        <div class="counter timer">
-                                            <div class="counter-boxes">
-                                                <div class="count-box">
-                                                    <h1 class="value day" id="awuruduDays">0</h1>
-                                                    <span class="awurudu--section1--time">දින</span>
-                                                </div>
-                                                <div class="count-box">
-                                                    <h1 class="value hour" id="awuruduHours">0</h1>
-                                                    <span class="awurudu--section1--time" id>පැය</span>
-                                                </div>
-                                                <div class="count-box">
-                                                    <h1 class="value minute" id="awuruduMins">0</h1>
-                                                    <span class="awurudu--section1--time">මිනිත්තු</span>
-                                                </div>
-                                                <div class="count-box">
-                                                    <h1 class="value second" id="awuruduSecs">0</h1>
-                                                    <span class="awurudu--section1--time">තත්පර</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="awurudu--section1--detaildiv">
-                        <p class="awurudu--section1--details">සිංහල හා දෙමළ අලුත් අවුරුද්ද ලංකාවේ විශේෂ උත්සවයකි. නැකත් අනුව කටයුතුකිරීම, කැවිලි අතුරුපස සහ ආගමික චාරිත්‍ර ප්‍රධාන වේ. පවුලේ සන්සුන්භාවය, මෛත්‍රිය හා එකමුතුබව ඉස්මතුකරමින්, මෙය සතුටුදායක උත්සවයකි. තෑගි හුවමාරු, ක්‍රීඩා, සහ සන්සුන් කාලයක් ලෙසද සැලකේ. </p>
-                    </div>
-                </div>
-                <div class="awurudu--section1--img" id="nakathImg">
-
-                </div>
-
-                <!-- <div> -->
-
-
-                <img onclick="full()" id="toggleImage" class="awurudu--section1--full" src="../_resource/photos/awuruduNakath/section1/fulscreen.png" alt="">
-                <!-- </div> -->
-                <!-- <div class="awurudu--section1--fullsceen"></div> -->
-            </div>
-            <div class="awurudu--section1--div3">
-                <div class="awurudu--section1--div4">
-                    <button class="awurudu--section1--btn1" onclick="decIndex();"></button>
-                </div>
-                <div class="awurudu--section1--div5">
-                    <div class="awurudu--section1--div8">
-                        <div class="awurudu--section1--monthdiv">අප්‍රේල් මස <span id="nakathDay"></span></div>
-                        <div class="awurudu--section1--timediv"><img class="awurudu--section1--clockimg"
-                                src="../_resource/photos/awuruduNakath/section1/Wall clock.png"><span id="half"> </span><span style="font-family: arial;">&nbsp;</span> <span id="nakathTime"> 3'21</span>
-                        </div>
-                    </div>
-                    <h1 class="awurudu--section1--title2" id="nakathName2"></h1>
-                    <div class="awurudu--section1--div6"></div>
-                </div>
-                <div class="awurudu--section1--div7">
-                    <button class="awurudu--section1--btn2" onclick="incIndex();"></button>
-                </div>
-            </div>
-
-        </div>
-    </section>
-    <!-- section 01 End-->
-
-    <!-- section 02 Start-->
-    <section class="awurudu-section2">
-        <div class="awurudu-section2-div1">
-            <h1 class="awurudu-section2-tit">සිංහල අවුරුදු චාරිත්‍ර</h1>
-            <div class="awurudu-section2-div2">2026</div>
-        </div>
-        <div class="awurudu-section2-div3">
-            <!-- <h1 class="awurudu-section2-titsub">jDIN ,.akh</h1> -->
-
-            <div class="accordion">
-
-                <div class="accordion-item">
-                    <div class="accordion-item-header">
-                        නව සඳ බැලීම
-                    </div>
-                    <div class="accordion-item-body">
-                        <div class="accordion-item-body-content">
-                            අභිනව චන්ද්‍ර වර්ෂය සඳහා මාර්තු මස 20 වන සිකුරාදා දින ද, අභිතව සූර්ය වර්ෂය සඳහා අප්‍රේල් මස 19 වන ඉරිදාදිත ද තව සඳ බැලීම මැනව.
-
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-item-header">
-                        පරණ අවුරුද්ද සඳහා ස්නානය
-
-                    </div>
-                    <div class="accordion-item-body">
-                        <div class="accordion-item-body-content">
-                            අප්‍රේල් මස 13 වැනි සදු දින දිවුල් පත් යුෂ මිශ්‍ර නානු ගා ස්නානය කොට ඉෂ්ට දේවතා අනුස්මරණයේ යෙදී වාසය මැනවී.
-
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-item-header">
-                        අලූත් අවුරුදු උදාව
-
-                    </div>
-                    <div class="accordion-item-body">
-                        <div class="accordion-item-body-content">
-                            අප්‍රේල් මස 14 වැනි අඟහරුවාදා පූර්ව භාග 09.32 ට සිංහල අලූත් අවුරුද්ද උදාවෙයි.
-
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-item-header">
-                        පුණ්‍ය කාලය
-
-                    </div>
-                    <div class="accordion-item-body">
-                        <div class="accordion-item-body-content">
-                            අප්‍රේල් මස 14 වැනි අගහරුවාදා පූර්ව භාග 03.08 සිට එදිනම අපර භාග 03.56 දක්වා පුණ්‍ය කාලය බැවින් අප්‍රේල් මස 14 වන අගහරුවාදා පූර්ව භාග 03.08 ට පළමුව ආහාර පාන ගෙන සියලු වැඩ අත්හැර ආගමික වතාවත් වල යෙදීමද, පුණ්‍ය කාලයේ අපර කොටස එනම් අප්‍රේල් මස 14 වන අඟහරුවාදා පූර්ව භාග 09.32 සිට එදින අපර භාග 08.56 දක්වා පහත දැක්වෙන අයුරිත් ආහාර පිසීම, වැඩ ඇල්ලීම, ගණුදෙනු කිරීම හා ආහාර අනුභවය ආදී නැකත් චාරිත්‍ර විධි ඉටු කිරීම මැනවි.
-
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-item-header">
-                        ආහාර පිසීම
-
-                    </div>
-                    <div class="accordion-item-body">
-                        <div class="accordion-item-body-content">
-                            අප්‍රේල් මස 14 වෙනි අගහරුවාදා පූර්ව භාග 10.41 ට රක්ත වර්ණ වස්ත්‍රාභරණයෙන් සැරසී දකුණු දිශාව බලා ලිප් බැද ගිණි මොලවා කිරි බතක්ද, කැවිලි වර්ගයක්ද, දී කිරි වලද ද, පිලියෙල කර ගැනීම මැනවි.
-
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <div class="accordion-item-header">
-                            වැඩ ඇල්ලීම, ගණුදෙනු කිරීම හා ආහාර අනුභවය
-
-                        </div>
-                        <div class="accordion-item-body">
-                            <div class="accordion-item-body-content">
-                                අප්‍රේල් මස 14 වෙනි අඟහරුවාදා අපර භාග 12.05 ට රක්ත වර්ණ වස්ත්‍රාභරණයෙන් සැරසී දකුණු දිශාව බලා සියලු වැඩ අල්ලා ගමුදෙනු කොට ආහාර අනුභවය කිරීම මාතවි.
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <div class="accordion-item-header">
-                                හිසතෙල් ගෑම
-
-                            </div>
-                            <div class="accordion-item-body">
-                                <div class="accordion-item-body-content">
-                                    අප්‍රේල් මස 15 වෙහි බදාදා පූර්ව භාග 06.54 ට නැගෙනහිර දිශාව බලා හිසට කොහොඹ පත්ද, පයට කොළොන් පද, තබා පච්ච වර්ගා වස්ත්‍රාභරණයෙන් සැරසී කොහොඹ පත් යුෂ මිශ්‍ර භානු හා තෙල් ගා ස්නානය කිරීම මැනවි. </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <div class="accordion-item-header">
-                                රැකී රක්ෂා සඳහා පිටත්ව යෑම
-
-                            </div>
-                            <div class="accordion-item-body">
-                                <div class="accordion-item-body-content">
-                                    අප්‍රේල් මස 20 වැනි සඳුදා පූර්ව භාග 06.27 ට ශ්වේත වර්ණ වස්ත්‍රාභරණයෙන් සැරසී කිරිබත් සහ එළකිරි මිශ්‍ර කැවිලිද අනුභව කර දකුණු දිශාව බලා පිටත් වීම මැනවි. </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <div class="accordion-item-header">
-                                පැළ සිටුවීමට
-
-                            </div>
-                            <div class="accordion-item-body">
-                                <div class="accordion-item-body-content">
-                                    අප්‍රේල් මස 23 වැනි බ්‍රහස්පතින්දා රන්වන් පැහැති වස්ත්‍රාභරණයෙන් සැරසී පූර්ව භාග 11.36 ට උතුරු දිශාව බලා පැළ සිටුවීම මැනවි.
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-    </section>
-    <!-- section 02 End-->
-
-
-    <!-- Footer Start-->
-    <!DOCTYPE html>
-<html lang="si">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../footer/style.css">
+    <title>Mitzii ලිත - 2026 අවුරුදු නැකත්</title>
+    <style>
+        :root {
+            --gold: #FFD700;
+            --dark-bg: #0f0f0f; /* වීඩියෝ එක වෙනුවට තද වර්ණය */
+            --glass: rgba(255, 255, 255, 0.05);
+            --dark-glass: rgba(0, 0, 0, 0.8);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', system-ui, sans-serif; 
+            color: white; 
+            background-color: var(--dark-bg);
+            /* ලස්සන gradient එකක් පසුබිමට */
+            background: radial-gradient(circle at top right, #1a1a1a, #000);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--gold);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            letter-spacing: -1px;
+        }
+
+        /* Countdown Card */
+        .countdown-card {
+            background: var(--dark-glass);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 30px;
+            padding: 35px 20px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        .countdown-title { font-size: 1.1rem; color: #aaa; margin-bottom: 25px; }
+
+        .timer-display {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .time-box {
+            background: rgba(255,255,255,0.05);
+            padding: 15px 5px;
+            border-radius: 18px;
+            min-width: 70px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .time-box span { font-size: 1.8rem; font-weight: bold; display: block; color: var(--gold); }
+        .time-box label { font-size: 0.7rem; color: #888; text-transform: uppercase; margin-top: 5px; display: block; }
+
+        /* Nakath List */
+        .nakath-section { width: 100%; }
+        .nakath-title { color: var(--gold); margin-bottom: 25px; text-align: center; font-size: 1.5rem; }
+
+        .nakath-card {
+            background: rgba(255, 255, 255, 0.03);
+            margin-bottom: 15px;
+            padding: 25px;
+            border-radius: 20px;
+            border-right: 1px solid rgba(255,255,255,0.05);
+            border-left: 5px solid var(--gold);
+            transition: 0.3s;
+        }
+
+        .nakath-header { font-weight: bold; font-size: 1.1rem; color: var(--gold); margin-bottom: 8px; }
+        .nakath-time { font-size: 0.85rem; color: #888; margin-bottom: 12px; }
+        .nakath-desc { font-size: 0.95rem; line-height: 1.6; color: #ddd; }
+
+        /* Music Player Fixed at Bottom */
+        .player-box {
+            position: fixed;
+            bottom: 20px;
+            width: calc(100% - 40px);
+            max-width: 560px;
+            background: rgba(20, 20, 20, 0.9);
+            backdrop-filter: blur(20px);
+            padding: 12px;
+            border-radius: 100px;
+            border: 1px solid rgba(255,215,0,0.3);
+            display: flex;
+            align-items: center;
+            z-index: 100;
+        }
+
+        audio { height: 35px; width: 100%; filter: invert(100%) hue-rotate(180deg) brightness(1.5); }
+
+        footer { margin: 60px 0 120px 0; opacity: 0.4; font-size: 0.8rem; text-align: center; width: 100%; }
+    </style>
 </head>
-
 <body>
-    <section class="fo-sec">
-        <div class="fo-sec-div1">
-            <div class="fo-sec-div2">
-                <div class="fo-sec-logodiv">
-                    <img src="../_resource/photos/footer/logo.png" alt="">
-                </div>
-                <div class="fo-sec-linkdiv">
-                    <div class="fo-sec-linkdivin">
-                        <a class="fo-sec-links" href="../lagnaPalapala/index.php">ලග්න පලාපල</a>
-                        <h3 class="fo-sec-linkdash">&nbsp;|&nbsp;</h3>
-                        <a class="fo-sec-links" href="../awuruduNakath/index.php">අවුරුදු නැකත්</a>
-                        <h3 class="fo-sec-linkdash">&nbsp;|&nbsp;</h3>
-                        <a class="fo-sec-links" href="../rahuKalaya/index.php">රාහු කාලය</a>
 
-                    </div>
-                    <div class="fo-sec-linkdivin">
-                        <a class="fo-sec-links" href="../pohoyaDina/index.php">සතර පොහෝය</a>
-                        <h3 class="fo-sec-linkdash">&nbsp;|&nbsp;</h3>
-                        <a class="fo-sec-links" href="../mahaDasaChacraya/index.php">මහා දසා චක්‍රය</a>
-                        <h3 class="fo-sec-linkdash">&nbsp;|&nbsp;</h3>
-                        <a class="fo-sec-links" href="../subaDawas/index.php">සුභ දවස්</a>
+    <div class="container">
+        <header>
+            <div class="logo">Mitzii ලිත.lk</div>
+        </header>
 
-                    </div>
-                    <div class="fo-sec-linkdivin">
-                        <a class="fo-sec-links" href="../rohalNamawaliya/index.php">රෝහල් නාමාවලිය</a>
-                        <h3 class="fo-sec-linkdash">&nbsp;|&nbsp;</h3>
-                        <a class="fo-sec-links" href="../nagaraNamawaliya/index.php">නගර නාමාවලිය</a>
-                        <h3 class="fo-sec-linkdash">&nbsp;|&nbsp;</h3>
-                        <a class="fo-sec-links" href="../kalaHorawa/index.php">කාල හෝරාව</a>
-                        
-                    </div>
-
-                    <div class="fo-sec-linkdivindesc">
-                        <a class="fo-sec-links" href="../lagnaPalapala/index.php">ලග්න පලාපල</a>
-                        <h3 class="fo-sec-linkdash">&nbsp;|&nbsp;</h3>
-                        <a class="fo-sec-links" href="../awuruduNakath/index.php">අවුරුදු නැකත්</a>
-                        <h3 class="fo-sec-linkdash">&nbsp;|&nbsp;</h3>
-                        <a class="fo-sec-links" href="../rahuKalaya/index.php">රාහු කාලය</a>
-                        <h3 class="fo-sec-linkdash">&nbsp;|&nbsp;</h3>
-                        <a class="fo-sec-links" href="../pohoyaDina/index.php">සතර පොහෝය</a>
-                        
-                    </div>
-                    <div class="fo-sec-linkdivindesc">
-                        <a class="fo-sec-links" href="../subaDawas/index.php">සුභ දවස්</a>
-                        <h3 class="fo-sec-linkdash">&nbsp;|&nbsp;</h3>
-                        <a class="fo-sec-links" href="../rohalNamawaliya/index.php">රෝහල් නාමාවලිය</a>
-                        <h3 class="fo-sec-linkdash">&nbsp;|&nbsp;</h3>
-                        <a class="fo-sec-links" href="../kalaHorawa/index.php">කාල හෝරාව</a>
-                        <h3 class="fo-sec-linkdash">&nbsp;|&nbsp;</h3>
-                        <a class="fo-sec-links" href="../mahaDasaChacraya/index.php">මහා දසා චක්‍රය</a>
-                        <h3 class="fo-sec-linkdash">&nbsp;|&nbsp;</h3>
-                        <a class="fo-sec-links" href="../nagaraNamawaliya/index.php">නගර නාමාවලිය</a>
-                        
-                    </div>
-
-                </div>
-                <div class="fo-sec-socaildiv">
-                    <span class="fo-sec-socailtxt" >ජ්‍යොතිෂ විද්‍යාවේ පෙරළිකාර ඩිජිටල්කරණය</span>
-                    <!-- <img class="fo-sec-socailimg" src="/_resource/photos/socialMedia/Facebook App Symbol.png" alt=""> -->
-                </div>
-                <div class="fo-sec-copydiv">
-                    <span class="fo-sec-copyicon">© &nbsp;</span>
-                    <span class="footer--span">
-                        All Rights Reserved by | &nbsp;
-                    </span>
-                    <span>
-                        <a href="https://litha.lk" class="fo-sec-link">
-                            Litha.lk.
-                        </a>
-                    </span>
-                </div>
-            </div>
-            <div class="fo-sec-graddiv">
-
+        <div class="countdown-card">
+            <p class="countdown-title">අලුත් අවුරුදු උදාවට තව...</p>
+            <div class="timer-display">
+                <div class="time-box"><span id="days">00</span><label>දින</label></div>
+                <div class="time-box"><span id="hours">00</span><label>පැය</label></div>
+                <div class="time-box"><span id="mins">00</span><label>මිනිත්තු</label></div>
+                <div class="time-box"><span id="secs">00</span><label>තත්පර</label></div>
             </div>
         </div>
-    </section>
+
+        <div class="nakath-section">
+            <h2 class="nakath-title">සිංහල අවුරුදු චාරිත්‍ර 2026</h2>
+
+            <div class="nakath-card">
+                <div class="nakath-header">අලූත් අවුරුදු උදාව</div>
+                <div class="nakath-time">අප්‍රේල් 14 වැනි අඟහරුවාදා පෙ.ව. 09.32</div>
+                <div class="nakath-desc">අප්‍රේල් මස 14 වැනි අඟහරුවාදා පූර්ව භාග 09.32 ට සිංහල අලූත් අවුරුද්ද උදාවෙයි.</div>
+            </div>
+
+            <div class="nakath-card" style="border-left-color: #ff4757;">
+                <div class="nakath-header">පුණ්‍ය කාලය</div>
+                <div class="nakath-time">අප්‍රේල් 14 පෙ.ව. 03.08 සිට ප.ව. 03.56 දක්වා</div>
+                <div class="nakath-desc">ආගමික වතාවත් වල යෙදීම හා නැකත් චාරිත්‍ර ඉටු කිරීම මැනවි.</div>
+            </div>
+
+            <div class="nakath-card">
+                <div class="nakath-header">ආහාර පිසීම</div>
+                <div class="nakath-time">අප්‍රේල් 14 පූර්ව භාග 10.41</div>
+                <div class="nakath-desc">දකුණු දිශාව බලා ලිප් බැඳ ගිනි මොලවා කිරි බතක් හා කැවිලි පිළියෙල කිරීම මැනවි.</div>
+            </div>
+        </div>
+
+        <footer>
+            © 2026 Developed by Mitzii | Mitzii ලිත.lk
+        </footer>
+
+        <div class="player-box">
+            <audio id="main-audio" controls autoplay>
+                <source src="https://files.catbox.moe/etcs2p.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+    </div>
+
+    <script>
+        // Countdown
+        const targetDate = new Date("April 14, 2026 09:32:00").getTime();
+        function updateTimer() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            if (diff < 0) return;
+            document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // Playlist
+        const audio = document.getElementById('main-audio');
+        const playlist = [
+            "https://files.catbox.moe/etcs2p.mp3",
+            "https://files.catbox.moe/u4c3b5.mp3",
+            "https://files.catbox.moe/xlhc20.mp3"
+        ];
+        let currentSong = 0;
+        audio.onended = function() {
+            currentSong = (currentSong + 1) % playlist.length;
+            audio.src = playlist[currentSong];
+            audio.play();
+        };
+    </script>
 </body>
-
-</html>    <!-- Footer End-->
-
-    <script src="../awuruduNakath/script.js"></script>
-    <script src="../awuruduNakath/nakath.js?v=20250406"></script>
-</body>
-
-            </html>
+</html>

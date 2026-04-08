@@ -7,172 +7,159 @@
     <style>
         :root {
             --gold: #e2b34c;
-            --bg: #fdfaf5;
             --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.95);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
         
-        body { background-color: var(--bg); color: #333; padding-bottom: 100px; }
+        body { background-color: #fcf8f2; color: #333; overflow-x: hidden; padding-bottom: 120px; }
 
-        /* පසුබිම් වීඩියෝව */
+        /* 🎥 Background Video & Animation */
         #bg-video {
             position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%;
-            z-index: -1; filter: opacity(0.2);
+            z-index: -2; filter: opacity(0.25);
         }
+        #canvas { position: fixed; top: 0; left: 0; z-index: -1; pointer-events: none; }
 
         /* Header */
         .header {
-            background: linear-gradient(to right, var(--gold), #f7e1a0);
-            padding: 15px 20px;
-            display: flex; justify-content: space-between; align-items: center;
-            position: sticky; top: 0; z-index: 100;
+            background: linear-gradient(to right, #e2b34c, #f7e1a0);
+            padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100;
         }
-        .logo { font-weight: bold; font-size: 20px; }
+        .logo { font-weight: bold; font-size: 22px; color: #333; }
 
-        /* Main Countdown Section (වීඩියෝවේ තිබූ ආකාරයට) */
-        .main-timer-section {
-            text-align: center;
-            padding: 30px 10px;
-            background: white;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #eee;
+        /* Top Countdown Section */
+        .main-timer {
+            text-align: center; padding: 35px 15px; background: var(--white);
+            border-bottom: 1px solid #eee; margin-bottom: 20px;
+            animation: fadeInDown 0.8s ease;
         }
         .timer-title { color: var(--gold); font-size: 1.2rem; font-weight: bold; margin-bottom: 15px; }
-        .display-grid { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
-        .box { background: #f4f4f4; padding: 10px; border-radius: 8px; min-width: 60px; }
-        .box span { font-size: 22px; font-weight: bold; display: block; }
-        .box label { font-size: 11px; color: #888; }
+        .grid { display: flex; justify-content: center; gap: 12px; margin-bottom: 20px; }
+        .box { background: #f8f8f8; padding: 12px; border-radius: 12px; min-width: 65px; border-bottom: 3px solid var(--gold); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .box span { font-size: 24px; font-weight: bold; display: block; color: #222; }
+        .box label { font-size: 11px; color: #888; text-transform: uppercase; }
 
-        /* Accordion Section (පින්තූරවල තිබූ ආකාරයට) */
-        .nakath-list { padding: 0 15px; }
+        /* Accordion List */
+        .nakath-list { padding: 0 15px; max-width: 600px; margin: 0 auto; }
         .acc-item {
-            background: var(--white);
-            margin-bottom: 10px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border: 1px solid #eee;
+            background: var(--white); margin-bottom: 12px; border-radius: 15px;
+            overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.05); border: 1px solid #eee;
+            transition: 0.3s; animation: fadeInUp 0.8s ease;
         }
         .acc-header {
-            padding: 18px;
-            display: flex; justify-content: space-between; align-items: center;
-            cursor: pointer;
-            font-weight: 600;
-            background: #fff;
+            padding: 20px; display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; background: #fff;
         }
-        .acc-header:hover { background: #f9f9f9; }
         .acc-content {
-            padding: 0 18px;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease-out;
-            background: #fff;
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.6;
+            padding: 0 20px; max-height: 0; overflow: hidden;
+            transition: all 0.4s ease; background: #fff; color: #666; font-size: 0.95rem; line-height: 1.6;
         }
-        .acc-item.active .acc-content { padding: 15px 18px; max-height: 300px; border-top: 1px solid #f5f5f5; }
-        .acc-item.active .icon { transform: rotate(180deg); }
-        .icon { transition: 0.3s; color: var(--gold); font-weight: bold; }
+        .acc-item.active { border-color: var(--gold); transform: scale(1.02); }
+        .acc-item.active .acc-content { padding: 15px 20px 25px; max-height: 500px; border-top: 1px solid #f9f9f9; }
+        
+        .n-title { font-weight: bold; color: #444; font-size: 1.05rem; }
+        .n-time-tag { font-size: 0.8rem; color: var(--gold); margin-top: 4px; font-weight: 600; }
 
-        .time-badge {
-            font-size: 0.75rem;
-            background: #fff4d8;
-            color: #b08a2e;
-            padding: 3px 10px;
-            border-radius: 20px;
-            margin-top: 5px;
-            display: inline-block;
+        /* Audio Player Bar */
+        .player-bar {
+            position: fixed; bottom: 0; width: 100%; background: white;
+            padding: 15px; border-top: 1px solid #eee; z-index: 1000;
+            display: flex; flex-direction: column; align-items: center;
         }
+        audio { width: 100%; max-width: 500px; height: 35px; }
 
-        /* Music Player Bar */
-        .music-bar {
-            position: fixed; bottom: 0; width: 100%;
-            background: white; padding: 10px;
-            border-top: 1px solid #eee; display: flex; align-items: center;
-        }
-        audio { width: 100%; height: 35px; }
+        /* Animations */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
+<canvas id="canvas"></canvas>
 <video autoplay loop muted playsinline id="bg-video">
     <source src="1000344419.mp4" type="video/mp4">
 </video>
 
 <div class="header">
-    <div class="logo">ලිත <span style="font-size: 10px;">MITZII.LK</span></div>
-    <div>☰</div>
+    <div class="logo">MITZII ලිත <span style="font-size: 10px;">2026</span></div>
+    <div style="font-size: 20px;">☰</div>
 </div>
 
-<div class="main-timer-section">
+<div class="main-timer">
     <div class="timer-title" id="main-title">අලුත් අවුරුදු උදාවට තව,</div>
-    <div class="display-grid">
+    <div class="grid">
         <div class="box"><span id="d">0</span><label>දින</label></div>
         <div class="box"><span id="h">00</span><label>පැය</label></div>
-        <div class="box"><span id="m">00</span><label>මිනිත්තු</label></div>
-        <div class="box"><span id="s">00</span><label>තත්පර</label></div>
+        <div class="box"><span id="m">00</span><label>මිනි</label></div>
+        <div class="box"><span id="s">00</span><label>තත්</label></div>
     </div>
-    <div style="font-weight: bold; color: var(--gold);" id="main-time-str">පෙ.ව. 03:21</div>
+    <div id="target-str" style="font-weight: bold; color: var(--gold);">අප්‍රේල් 14 පූර්ව භාග 09:32</div>
 </div>
 
 <div class="nakath-list">
-    <h3 style="margin-bottom: 15px; font-size: 1rem; color: #888;">සියලුම නැකත් වේලාවන්</h3>
     <div id="items-container"></div>
 </div>
 
-<div class="music-bar">
+<div class="player-bar">
     <audio id="audio" controls autoplay>
         <source src="https://files.catbox.moe/etcs2p.mp3" type="audio/mpeg">
     </audio>
 </div>
 
 <script>
+    // ✅ ඔබ ලබාදුන් සියලුම විස්තර සහ වේලාවන් (2026)
     const nakathData = [
-        { name: "පුණ්‍ය කාලය ආරම්භය", time: "2026-04-13T08:57:00", str: "අප්‍රේල් 13 පෙ.ව. 8:57", desc: "අප්‍රේල් 13 වන සඳුදා පූර්වභාග 08.57 සිට 14 වන අඟහරුවාදා අපරභාග 03.56 දක්වා පුණ්‍ය කාලය බැවින් එම කාලය තුළ සියලු වැඩ අත්හැර ආගමික වතාවත්වල යෙදීම මැනවි." },
-        { name: "අලුත් අවුරුදු උදාව", time: "2026-04-14T03:21:00", str: "අප්‍රේල් 14 පෙ.ව. 3:21", desc: "අප්‍රේල් මස 14 වන අඟහරුවාදා පූර්වභාග 03.21 ට සිංහල හා දෙමළ අලුත් අවුරුද්ද උදාවෙයි." },
-        { name: "ලිප් බැඳීම (ආහාර පිසීම)", time: "2026-04-14T05:04:00", str: "අප්‍රේල් 14 පෙ.ව. 5:04", desc: "තැඹිලි පැහැති වස්ත්‍රයකින් සැරසී නැගෙනහිර දිශාව බලා ලිප් බැඳ ගිනි මොලවා එළකිරි මිශ්‍ර කිරිබතක් සහ තල මිශ්‍ර කැවිලි වර්ගයක් පිළියෙල කර ගැනීම මැනවි." },
-        { name: "වැඩ ඇල්ලීම හා ආහාර අනුභවය", time: "2026-04-14T06:44:00", str: "අප්‍රේල් 14 පෙ.ව. 6:44", desc: "තැඹිලි පැහැති වස්ත්‍රයකින් සැරසී නැගෙනහිර දිශාව බලා සියලු වැඩ අල්ලා, ගනුදෙනු කොට ආහාර අනුභවය කිරීම මැනවි." },
-        { name: "වැඩ ආරම්භය / ගනුදෙනු", time: "2026-04-15T09:03:00", str: "අප්‍රේල් 15 පෙ.ව. 9:03", desc: "කොළ පැහැති වස්ත්‍රාභරණයෙන් සැරසී උතුරු දිශාව බලා කිරිබත් අනුභව කර රැකී රක්ෂා සඳහා පිටත්ව යාම මැනවි." },
-        { name: "හිසතෙල් ගෑම", time: "2026-04-16T09:05:00", str: "අප්‍රේල් 16 පෙ.ව. 9:05", desc: "හිසට කොහොඹ පත් ද පයට කොළොන් පත් ද තබා තෙල් ගා ස්නානය කිරීම මැනවි." },
-        { name: "රැකියා පිටත්වීම", time: "2026-04-17T06:43:00", str: "අප්‍රේල් 17 පෙ.ව. 6:43", desc: "සුදු පැහැති වස්ත්‍රාභරණයෙන් සැරසී උතුරු දිශාව බලා රැකී රක්ෂා සඳහා පිටත්ව යාම මැනවි." }
+        { name: "🌙 නව සඳ බැලීම", time: "2026-03-20T18:00:00", str: "මාර්තු 20 සහ අප්‍රේල් 19", desc: "අධින වසන්ත වර්ෂය සඳහා මාර්තු මස 20 වන සිකුරාදා දින ද, අධිවර්ෂ සූර්ය වර්ෂය සඳහා අප්‍රේල් මස 19 වන ඉරිදා ද නව සඳ බැලීම මැනවි." },
+        { name: "🛁 පරණ අවුරුද්ද සඳහා ස්නානය", time: "2026-04-13T08:00:00", str: "අප්‍රේල් 13 සඳුදා", desc: "අප්‍රේල් මස 13 වන සඳු දින දිවුල් පත් යුෂ මිශ්‍ර නානු ගා ස්නානය කොට ඉෂ්ට දෙවියන්ගේ ආශිර්වාදය ලබා වාසය මැනවි." },
+        { name: "🌸 අලුත් අවුරුදු උදාව", time: "2026-04-14T09:32:00", str: "අප්‍රේල් 14 පූර්ව භාග 09:32", desc: "අප්‍රේල් මස 14 වන අඟහරුවාදා පූර්ව භාග 09.32 ට සිංහල අලුත් අවුරුද්ද උදාවෙයි." },
+        { name: "🙏 පුණ්‍ය කාලය", time: "2026-04-14T03:08:00", str: "අප්‍රේල් 14 පෙ.ව. 03:08 - ප.ව. 03:56", desc: "අප්‍රේල් මස 14 වන අඟහරුවාදා පූර්ව භාග 03.08 සිට එදින අපර භාග 03.56 දක්වා පුණ්‍ය කාලය වේ. මෙම කාලය තුළ ආහාර ගැනීමෙන් වලකිමින්, ආගමික කටයුතු වල යෙදී සිටීම යහපත් වේ." },
+        { name: "🔥 ආහාර පිසීම", time: "2026-04-14T10:41:00", str: "අප්‍රේල් 14 පූර්ව භාග 10:41", desc: "රන්වන් වර්ණ වස්ත්‍රාභරණයෙන් සැරසි දකුණු දිශාව බලා ලිප් බැඳ ගිනි මොලවා කිරිබතක්, කැවිලි වර්ගයක් හා දී කිරිබත පිළියෙල කර ගන්න මැනවි." },
+        { name: "🍽️ වැඩ ඇල්ලීම හා ආහාර අනුභවය", time: "2026-04-14T12:05:00", str: "අප්‍රේල් 14 අපර භාග 12:05", desc: "රන්වන් වර්ණ වස්ත්‍රාභරණයෙන් සැරසි දකුණු දිශාව බලා සියලු වැඩ ඇල්ලීම, ගනුදෙනු කිරීම හා ආහාර අනුභවය ආරම්භ කිරීම මැනවි." },
+        { name: "💆 හිසතෙල් ගෑම", time: "2026-04-15T06:54:00", str: "අප්‍රේල් 15 පූර්ව භාග 06:54", desc: "නැගෙනහිර දිශාව බලා හිස කොහොඹ පත්, පයුර් කොළොන් පත් තබා පවිත‍්‍ර වස්ත්‍රාභරණයෙන් සැරසි කොහොඹ පත් යුෂ මිශ්‍ර නානු හා තෙල් ගා ස්නානය කිරීම මැනවි." },
+        { name: "💼 රැකි රක්ෂා සඳහා පිටත්ව යාම", time: "2026-04-20T06:27:00", str: "අප්‍රේල් 20 පූර්ව භාග 06:27", desc: "සුදු වර්ණ වස්ත්‍රාභරණයෙන් සැරසි කිරිබතක් සහ කැවිලි මිශ්‍ර කටුවක් අනුභව කර දකුණු දිශාව බලා පිටත්ව යාම මැනවි." },
+        { name: "🌱 පැළ සිටුවීම", time: "2026-04-23T11:36:00", str: "අප්‍රේල් 23 පූර්ව භාග 11:36", desc: "දකුණු දිශාව බලා පැළ සිටුවීම මැනවි." }
     ];
 
     const container = document.getElementById('items-container');
-    
-    // Accordion නිර්මාණය
-    nakathData.forEach((n, index) => {
-        const item = document.createElement('div');
-        item.className = 'acc-item';
-        item.innerHTML = `
-            <div class="acc-header" onclick="toggleAcc(this, ${index})">
+    let activeIdx = 2; // Default: අවුරුදු උදාව (index 2)
+
+    nakathData.forEach((n, i) => {
+        const div = document.createElement('div');
+        div.className = `acc-item ${i === activeIdx ? 'active' : ''}`;
+        div.innerHTML = `
+            <div class="acc-header" onclick="changeNakath(this, ${i})">
                 <div>
-                    <div>${n.name}</div>
-                    <div class="time-badge">${n.str}</div>
+                    <div class="n-title">${n.name}</div>
+                    <div class="n-time-tag">${n.str}</div>
                 </div>
-                <div class="icon">▼</div>
+                <div style="color: var(--gold);">▼</div>
             </div>
             <div class="acc-content">${n.desc}</div>
         `;
-        container.appendChild(item);
+        container.appendChild(div);
     });
 
-    let activeIndex = 1; // Default අවුරුදු උදාව
-
-    function toggleAcc(el, index) {
-        const parent = el.parentElement;
-        document.querySelectorAll('.acc-item').forEach(i => i.classList.remove('active'));
-        parent.classList.add('active');
-        activeIndex = index;
-        document.getElementById('main-title').innerText = nakathData[index].name + "ට තව,";
-        document.getElementById('main-time-str').innerText = nakathData[index].str.split(' ').slice(2).join(' ');
+    function changeNakath(el, i) {
+        document.querySelectorAll('.acc-item').forEach(item => item.classList.remove('active'));
+        el.parentElement.classList.add('active');
+        activeIdx = i;
+        document.getElementById('main-title').innerText = nakathData[i].name + "ට තව,";
+        document.getElementById('target-str').innerText = nakathData[i].str;
     }
 
-    // ප්‍රධාන Countdown එක Update කිරීම
-    function updateMainTimer() {
+    // 🎵 ප්ලේලිස්ට්
+    const playlist = ["https://files.catbox.moe/etcs2p.mp3", "https://files.catbox.moe/u4c3b5.mp3", "https://files.catbox.moe/xlhc20.mp3"];
+    let sIdx = 0;
+    const audio = document.getElementById('audio');
+    audio.onended = () => { sIdx = (sIdx + 1) % playlist.length; audio.src = playlist[sIdx]; audio.play(); };
+
+    // ⏲️ ටයිමර් එක
+    function updateTimer() {
         const now = new Date().getTime();
-        const target = new Date(nakathData[activeIndex].time).getTime();
+        const target = new Date(nakathData[activeIdx].time).getTime();
         const diff = target - now;
 
         if (diff > 0) {
@@ -181,16 +168,28 @@
             document.getElementById('m').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
             document.getElementById('s').innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
         } else {
-            document.getElementById('d').innerText = "0";
-            document.getElementById('h').innerText = "00";
-            document.getElementById('m').innerText = "00";
-            document.getElementById('s').innerText = "00";
+            document.querySelectorAll('.box span').forEach(s => s.innerText = "00");
         }
     }
+    setInterval(updateTimer, 1000);
 
-    setInterval(updateMainTimer, 1000);
-    document.querySelector('.acc-item:nth-child(2)').classList.add('active'); // Default active
+    // ✨ සජීවී ඇනිමේෂන් (Particles)
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+    let particles = [];
+    for(let i=0; i<60; i++) particles.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*3+1, s: Math.random()*0.5+0.2});
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "rgba(226, 179, 76, 0.4)";
+        ctx.beginPath();
+        for(let p of particles) {
+            ctx.moveTo(p.x, p.y); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2, true);
+            p.y += p.s; if(p.y > canvas.height) p.y = -10;
+        }
+        ctx.fill(); requestAnimationFrame(draw);
+    }
+    draw();
 </script>
-
 </body>
 </html>

@@ -3,181 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mitzii Official Litha - 2026</title>
+    <title>අවුරුදු නැකත් 2026</title>
     <style>
         :root {
-            --soft-gold: #c5a059;
-            --premium-cream: #fdfaf5;
-            --deep-blue: #002366;
-            --glass-white: rgba(255, 255, 255, 0.85);
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --bg-black: #080808;
+            --card-dark: #121212;
+            --fire-red: #ff3e3e;
+            --fire-orange: #ff8c00;
+            --fire-yellow: #ffcc00;
+            --text-gray: #bbbbbb;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Times New Roman', serif; }
         
         body { 
-            background: var(--premium-cream);
-            color: #333;
+            background-color: var(--bg-black); 
+            color: var(--text-gray); 
             overflow-x: hidden;
-            line-height: 1.6;
-            padding-bottom: 100px;
+            padding-bottom: 110px;
         }
 
-        /* 🎥 Animated Backgrounds */
-        #bg-video {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -5; object-fit: cover; filter: opacity(0.1);
-        }
-        #canvas-overlay {
-            position: fixed; top: 0; left: 0; z-index: -4; pointer-events: none;
+        /* 🕊️ Background Animation */
+        #bg-canvas {
+            position: fixed; top: 0; left: 0; z-index: -1; pointer-events: none;
+            opacity: 0.3;
         }
 
-        /* ✨ Luxury Header */
+        /* ✨ Animated Floating Header */
         .header {
-            background: var(--white);
-            padding: 30px 20px;
+            padding: 50px 20px;
             text-align: center;
-            border-bottom: 2px solid var(--soft-gold);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            position: sticky; top: 0; z-index: 100;
-        }
-        .header h1 {
-            font-size: 28px;
-            color: var(--soft-gold);
-            letter-spacing: 5px;
-            font-weight: bold;
-            text-transform: uppercase;
+            background: linear-gradient(to bottom, #111, transparent);
         }
 
-        /* 🕰️ Premium Countdown Section */
-        .main-timer {
+        .floating-text {
+            display: inline-block;
+            font-size: 2.8rem;
+            font-weight: bold;
+            letter-spacing: 5px;
+            background: linear-gradient(45deg, var(--fire-red), var(--fire-orange), var(--fire-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: waveText 3s ease-in-out infinite;
+            text-shadow: 0 10px 20px rgba(255, 62, 62, 0.2);
+        }
+
+        @keyframes waveText {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(-1deg); }
+            75% { transform: translateY(5px) rotate(1deg); }
+        }
+
+        /* 🕰️ Premium Timer */
+        .timer-wrap {
             text-align: center;
-            padding: 60px 20px;
-            background: radial-gradient(circle, #fff, #fdfaf5);
             margin-bottom: 40px;
         }
-        .timer-title { 
-            font-size: 1.3rem; 
-            color: #444; 
-            margin-bottom: 30px; 
-            text-transform: uppercase;
+        .timer-heading {
+            color: var(--fire-orange);
+            font-size: 1rem;
+            margin-bottom: 25px;
             letter-spacing: 2px;
+            animation: softPulse 2s infinite;
         }
         .grid { display: flex; justify-content: center; gap: 15px; }
         .box { 
-            background: var(--glass-white);
-            backdrop-filter: blur(5px);
+            background: var(--card-dark); 
             padding: 20px; 
-            border-radius: 15px; 
-            min-width: 85px; 
-            border: 1px solid var(--soft-gold);
-            box-shadow: 0 10px 20px rgba(197, 160, 89, 0.1);
-            transition: var(--transition);
+            border-radius: 12px; 
+            min-width: 80px; 
+            border: 1px solid rgba(255, 140, 0, 0.2);
+            transition: 0.3s;
         }
-        .box:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(197, 160, 89, 0.2); }
-        .box span { font-size: 32px; font-weight: bold; display: block; color: var(--soft-gold); }
-        .box label { font-size: 10px; color: #888; letter-spacing: 1px; }
+        .box span { 
+            font-size: 2.2rem; 
+            font-weight: bold; 
+            display: block; 
+            color: var(--fire-yellow);
+            animation: numFloat 4s ease-in-out infinite;
+        }
+        .box label { font-size: 0.7rem; color: #666; }
 
-        .target-box {
-            display: inline-block;
-            margin-top: 35px;
-            padding: 10px 40px;
-            border: 1px double var(--soft-gold);
-            border-radius: 50px;
-            color: var(--soft-gold);
-            font-weight: bold;
-            background: rgba(197, 160, 89, 0.05);
+        @keyframes numFloat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); color: var(--fire-red); }
         }
 
-        /* 📜 Interactive Accordion List */
-        .nakath-list { padding: 0 20px; max-width: 800px; margin: 0 auto; }
-        .acc-item {
-            background: var(--white);
-            margin-bottom: 18px;
-            border-radius: 20px;
+        @keyframes softPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* 📜 List Design */
+        .list-container { max-width: 650px; margin: 0 auto; padding: 0 20px; }
+        .card {
+            background: var(--card-dark);
+            margin-bottom: 15px;
+            border-radius: 15px;
+            border-left: 4px solid var(--fire-red);
             overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.03);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
-            transition: var(--transition);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .acc-header {
-            padding: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
+        .card-head { padding: 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .card-body { 
+            max-height: 0; 
+            overflow: hidden; 
+            padding: 0 25px; 
+            color: #888; 
+            font-size: 0.95rem; 
+            transition: 0.5s ease;
+            line-height: 1.8;
         }
-        .acc-content {
-            padding: 0 30px;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            color: #666;
-            font-size: 1.05rem;
-        }
-        .acc-item.active { 
-            border-color: var(--soft-gold); 
-            box-shadow: 0 15px 35px rgba(197, 160, 89, 0.15); 
-            transform: scale(1.02);
-        }
-        .acc-item.active .acc-content { padding: 20px 30px 40px; max-height: 800px; border-top: 1px solid #fcfcfc; }
+        .card.active { transform: scale(1.02); border-left-color: var(--fire-yellow); }
+        .card.active .card-body { padding-bottom: 30px; max-height: 500px; }
         
-        .n-name { font-weight: bold; color: #222; font-size: 1.2rem; }
-        .n-time { color: var(--soft-gold); font-size: 0.9rem; margin-top: 5px; font-weight: bold; }
+        .n-title { font-weight: bold; color: #fff; font-size: 1.15rem; }
+        .n-time { color: var(--fire-orange); font-size: 0.85rem; margin-top: 5px; }
 
-        /* 🏆 Footer Branding */
+        /* 🎖️ Footer */
         .footer {
-            margin-top: 80px;
             text-align: center;
             padding: 60px 20px;
-            background: #fff;
-            border-top: 1px solid var(--soft-gold);
+            color: #444;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
         }
-        .footer .dev { font-size: 24px; color: var(--soft-gold); font-weight: bold; letter-spacing: 3px; }
-        .footer .support { font-size: 14px; color: #999; margin-top: 10px; font-style: italic; }
+        .footer b { color: var(--fire-red); display: block; margin-bottom: 8px; font-size: 1.3rem; }
 
-        /* 🎵 Luxury Player */
-        .audio-player {
+        /* 🎵 Music Player */
+        .player-fixed {
             position: fixed; bottom: 0; width: 100%;
-            background: rgba(255,255,255,0.95);
-            padding: 15px; border-top: 1px solid var(--soft-gold);
-            display: flex; justify-content: center; backdrop-filter: blur(10px);
+            background: rgba(0,0,0,0.9);
+            padding: 15px; border-top: 1px solid var(--fire-red);
+            display: flex; justify-content: center; backdrop-filter: blur(8px);
         }
-        audio { width: 100%; max-width: 600px; height: 35px; filter: grayscale(1) contrast(0.8); }
+        audio { height: 30px; filter: invert(1) sepia(1) saturate(5) hue-rotate(-20deg); }
 
     </style>
 </head>
 <body>
 
-<canvas id="canvas-overlay"></canvas>
-<video autoplay loop muted playsinline id="bg-video">
-    <source src="1000344419.mp4" type="video/mp4">
-</video>
+<canvas id="bg-canvas"></canvas>
 
-<header class="header">
-    <h1>අවුරුදු නැකත් 2026</h1>
-</header>
+<div class="header">
+    <div class="floating-text">අවුරුදු නැකත්</div>
+</div>
 
-<section class="main-timer">
-    <div class="timer-title" id="main-title">සිංහල අලුත් අවුරුදු උදාවට තව</div>
+<div class="timer-wrap">
+    <div class="timer-heading" id="target-name">අලුත් අවුරුදු උදාවට තව</div>
     <div class="grid">
         <div class="box"><span id="d">0</span><label>DAYS</label></div>
         <div class="box"><span id="h">00</span><label>HOURS</label></div>
         <div class="box"><span id="m">00</span><label>MINS</label></div>
         <div class="box"><span id="s">00</span><label>SECS</label></div>
     </div>
-    <div class="target-box" id="target-label">අප්‍රේල් 14 පෙ.ව. 09:32</div>
-</section>
+</div>
 
-<div class="nakath-list" id="items-container"></div>
+<div class="list-container" id="nakath-list"></div>
 
 <footer class="footer">
-    <div class="dev">DEV MITZII</div>
-    <div class="support">Supported by SIRIMATH</div>
+    <b>Dev Mitzii</b>
+    SUPPORTED BY SIRIMATH
 </footer>
 
-<div class="audio-player">
-    <audio id="player" controls autoplay>
+<div class="player-fixed">
+    <audio id="audio-ctrl" controls autoplay>
         <source src="https://files.catbox.moe/etcs2p.mp3" type="audio/mpeg">
     </audio>
 </div>
@@ -188,77 +178,66 @@
         { name: "පරණ අවුරුද්ද සඳහා ස්නානය", time: "2026-04-13T08:00:00", str: "අප්‍රේල් 13 සඳුදා", desc: "අප්‍රේල් මස 13 වන සඳු දින දිවුල් පත් යුෂ මිශ්‍ර නානු ගා ස්නානය කොට ඉෂ්ට දෙවියන්ගේ ආශිර්වාදය ලබා වාසය මැනවි." },
         { name: "අලුත් අවුරුදු උදාව", time: "2026-04-14T09:32:00", str: "අප්‍රේල් 14 පෙ.ව. 09:32", desc: "අප්‍රේල් මස 14 වන අඟහරුවාදා පූර්ව භාග 09.32 ට සිංහල අලුත් අවුරුද්ද උදාවෙයි." },
         { name: "පුණ්‍ය කාලය", time: "2026-04-14T03:08:00", str: "අප්‍රේල් 14 පෙ.ව. 03:08 - ප.ව. 03:56", desc: "අප්‍රේල් මස 14 වන අඟහරුවාදා පූර්ව භාග 03.08 සිට එදින අපර භාග 03.56 දක්වා පුණ්‍ය කාලය වේ." },
-        { name: "ආහාර පිසීම", time: "2026-04-14T10:41:00", str: "අප්‍රේල් 14 පෙ.ව. 10:41", desc: "රන්වන් වර්ණ වස්ත්‍රාභරණයෙන් සැරසි දකුණු දිශාව බලා ලිප් බැඳ ගිනි මොලවා කිරිබතක්, කැවිලි වර්ගයක් හා දී කිරිබත පිළියෙල කර ගන්න මැනවි." },
-        { name: "වැඩ ඇල්ලීම හා ආහාර අනුභවය", time: "2026-04-14T12:05:00", str: "අප්‍රේල් 14 ප.ව. 12:05", desc: "රන්වන් වර්ණ වස්ත්‍රාභරණයෙන් සැරසි දකුණු දිශාව බලා සියලු වැඩ ඇල්ලීම, ගනුදෙනු කිරීම හා ආහාර අනුභවය ආරම්භ කිරීම මැනවි." },
-        { name: "හිසතෙල් ගෑම", time: "2026-04-15T06:54:00", str: "අප්‍රේල් 15 පෙ.ව. 06:54", desc: "නැගෙනහිර දිශාව බලා කොහොඹ පත් යුෂ මිශ්‍ර නානු හා තෙල් ගා ස්නානය කිරීම මැනවි." },
-        { name: "රැකියා සඳහා පිටත්ව යාම", time: "2026-04-20T06:27:00", str: "අප්‍රේල් 20 පෙ.ව. 06:27", desc: "සුදු වර්ණ වස්ත්‍රාභරණයෙන් සැරසි කිරිබතක් සහ කැවිලි මිශ්‍ර කටුවක් අනුභව කර දකුණු දිශාව බලා පිටත්ව යාම මැනවි." }
+        { name: "ආහාර පිසීම", time: "2026-04-14T10:41:00", str: "අප්‍රේල් 14 පෙ.ව. 10:41", desc: "රන්වන් වර්ණ වස්ත්‍රාභරණයෙන් සැරසි දකුණු දිශාව බලා ලිප් බැඳ ගිනි මොලවා කිරිබතක් පිළියෙල කර ගන්න මැනවි." },
+        { name: "වැඩ ඇල්ලීම හා ආහාර අනුභවය", time: "2026-04-14T12:05:00", str: "අප්‍රේල් 14 ප.ව. 12:05", desc: "රන්වන් වර්ණ වස්ත්‍රාභරණයෙන් සැරසි දකුණු දිශාව බලා වැඩ ඇල්ලීම, ගනුදෙනු කිරීම හා ආහාර අනුභවය මැනවි." },
+        { name: "හිසතෙල් ගෑම", time: "2026-04-15T06:54:00", str: "අප්‍රේල් 15 පෙ.ව. 06:54", desc: "නැගෙනහිර දිශාව බලා කොහොඹ පත් යුෂ මිශ්‍ර නානු හා තෙල් ගා ස්නානය කිරීම මැනවි." }
     ];
 
-    const list = document.getElementById('items-container');
-    let currentIdx = 2;
+    const container = document.getElementById('nakath-list');
+    let activeIdx = 2;
 
     nakathData.forEach((n, i) => {
-        const div = document.createElement('div');
-        div.className = `acc-item ${i === currentIdx ? 'active' : ''}`;
-        div.innerHTML = `
-            <div class="acc-header" onclick="changeNakath(${i}, this)">
-                <div><div class="n-name">${n.name}</div><div class="n-time">${n.str}</div></div>
-                <div style="font-size: 10px; color: var(--soft-gold);">DETAILS</div>
+        const item = document.createElement('div');
+        item.className = `card ${i === activeIdx ? 'active' : ''}`;
+        item.innerHTML = `
+            <div class="card-head" onclick="select(${i}, this)">
+                <div><div class="n-title">${n.name}</div><div class="n-time">${n.str}</div></div>
+                <div style="color: var(--fire-yellow);">✦</div>
             </div>
-            <div class="acc-content">${n.desc}</div>
+            <div class="card-body">${n.desc}</div>
         `;
-        list.appendChild(div);
+        container.appendChild(item);
     });
 
-    function changeNakath(i, el) {
-        document.querySelectorAll('.acc-item').forEach(x => x.classList.remove('active'));
+    function select(i, el) {
+        document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
         el.parentElement.classList.add('active');
-        currentIdx = i;
-        document.getElementById('target-label').innerText = nakathData[i].str;
-        document.getElementById('main-title').innerText = nakathData[i].name + "ට තව";
+        activeIdx = i;
+        document.getElementById('target-name').innerText = nakathData[i].name + "ට තව";
     }
 
-    function updateTime() {
-        const diff = new Date(nakathData[currentIdx].time) - new Date();
+    function countdown() {
+        const diff = new Date(nakathData[activeIdx].time) - new Date();
         if (diff > 0) {
             document.getElementById('d').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
             document.getElementById('h').innerText = Math.floor((diff / (1000 * 60 * 60)) % 24).toString().padStart(2, '0');
             document.getElementById('m').innerText = Math.floor((diff / 1000 / 60) % 60).toString().padStart(2, '0');
             document.getElementById('s').innerText = Math.floor((diff / 1000) % 60).toString().padStart(2, '0');
-        } else { document.querySelectorAll('.box span').forEach(x => x.innerText = "00"); }
+        } else { document.querySelectorAll('.box span').forEach(s => s.innerText = "00"); }
     }
-    setInterval(updateTime, 1000);
+    setInterval(countdown, 1000);
 
-    // 🕊️ Luxury Birds & Flowers Animation
-    const canvas = document.getElementById('canvas-overlay');
+    // 🕊️ Floating Particle Effect
+    const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-
-    let items = [];
-    for(let i=0; i<8; i++) items.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, s: Math.random()*1+0.5, type:'bird', w:0 });
-    for(let i=0; i<15; i++) items.push({ x: Math.random()*canvas.width, y: -50, s: Math.random()*2+1, type:'petal', r:Math.random()*Math.PI });
+    let parts = [];
+    for(let i=0; i<8; i++) parts.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height/2, s: Math.random()*0.5+0.2, w: 0 });
 
     function draw() {
         ctx.clearRect(0,0,canvas.width, canvas.height);
-        items.forEach(it => {
-            if(it.type === 'bird') {
-                ctx.strokeStyle = "rgba(197, 160, 89, 0.2)"; ctx.lineWidth = 2; ctx.beginPath();
-                let wing = Math.sin(it.w)*5;
-                ctx.moveTo(it.x, it.y+wing); ctx.lineTo(it.x+12, it.y); ctx.lineTo(it.x+24, it.y+wing);
-                ctx.stroke(); it.x += it.s; it.w += 0.1; if(it.x > canvas.width) it.x = -30;
-            } else {
-                ctx.fillStyle = "rgba(197, 160, 89, 0.1)"; ctx.beginPath();
-                ctx.ellipse(it.x, it.y, 5, 8, it.r, 0, Math.PI*2); ctx.fill();
-                it.y += it.s; it.r += 0.01; if(it.y > canvas.height) it.y = -20;
-            }
+        ctx.strokeStyle = "rgba(255, 140, 0, 0.2)";
+        parts.forEach(p => {
+            ctx.beginPath(); let wing = Math.sin(p.w)*4;
+            ctx.moveTo(p.x, p.y+wing); ctx.lineTo(p.x+12, p.y); ctx.lineTo(p.x+24, p.y+wing);
+            ctx.stroke(); p.x += p.s; p.w += 0.08; if(p.x > canvas.width) p.x = -30;
         });
         requestAnimationFrame(draw);
-    }
-    draw();
+    } draw();
 
-    const audio = document.getElementById('player');
-    const tracks = ["https://files.catbox.moe/etcs2p.mp3", "https://files.catbox.moe/u4c3b5.mp3", "https://files.catbox.moe/xlhc20.mp3"];
-    let t = 0; audio.onended = () => { t = (t+1)%tracks.length; audio.src = tracks[t]; audio.play(); };
+    const audio = document.getElementById('audio-ctrl');
+    const playlist = ["https://files.catbox.moe/etcs2p.mp3", "https://files.catbox.moe/u4c3b5.mp3", "https://files.catbox.moe/xlhc20.mp3"];
+    let track = 0; audio.onended = () => { track = (track+1)%playlist.length; audio.src = playlist[track]; audio.play(); };
 </script>
 </body>
 </html>

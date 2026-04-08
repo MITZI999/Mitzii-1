@@ -3,119 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>අවුරුදු නැකත් - 2026</title>
+    <title>Mitzii Fire Litha - 2026</title>
     <style>
         :root {
-            --gold: #c5a059;
-            --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.9);
-            --dark-text: #2c2c2c;
+            --bg-black: #050505;
+            --card-bg: #111111;
+            --fire-red: #ff3333;
+            --fire-orange: #ff8800;
+            --fire-yellow: #ffcc00;
+            --text-light: #eeeeee;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Times New Roman', serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
         
-        body { background-color: #fdfaf5; color: var(--dark-text); overflow: hidden; padding-bottom: 120px; }
+        body { 
+            background-color: var(--bg-black); 
+            color: var(--text-light); 
+            overflow-x: hidden; 
+            padding-bottom: 140px;
+        }
 
-        /* 🔄 Loading Screen */
+        /* 🔄 Loading Screen (Image larger & animated) */
         #loading-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #fff; z-index: 9999; display: flex; flex-direction: column;
+            background: #000; z-index: 9999; display: flex; flex-direction: column;
             justify-content: center; align-items: center; transition: opacity 1s ease;
         }
-        #loading-screen img { width: 150px; border-radius: 50%; animation: pulse 2s infinite; }
-        #loading-screen p { margin-top: 20px; color: var(--gold); font-size: 1.2rem; font-weight: bold; }
+        #loading-screen img { 
+            width: 250px; /* ලොකුවට දාන්න */
+            border-radius: 50%; 
+            border: 5px solid var(--fire-orange);
+            box-shadow: 0 0 30px rgba(255, 136, 0, 0.6);
+            animation: pulseGlow 2s infinite; 
+        }
+        #loading-screen p { 
+            margin-top: 25px; 
+            background: linear-gradient(to right, var(--fire-red), var(--fire-yellow));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-size: 1.5rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px;
+        }
 
-        @keyframes pulse { from { transform: scale(1); opacity: 1; } to { transform: scale(1.1); opacity: 0.7; } }
+        @keyframes pulseGlow { from { transform: scale(1); opacity: 1; } to { transform: scale(1.05); opacity: 0.8; } }
 
-        /* 🎥 Background Elements */
+        /* 🎥 Animated Background Elements */
         #bg-video {
             position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%;
-            z-index: -3; filter: opacity(0.2);
+            z-index: -3; filter: opacity(0.15) contrast(1.2); /* Very subtle */
         }
         #animation-canvas {
             position: fixed; top: 0; left: 0; z-index: -2; pointer-events: none;
         }
 
-        /* Header (Logo from Image) */
+        /* 🔥 Header (Logo Image provided, larger) */
         .header {
-            background: linear-gradient(to right, var(--gold), #f7e1a0);
-            padding: 10px 20px;
+            background: linear-gradient(135deg, #1a1a1a, #000);
+            padding: 20px;
             display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-bottom: 3px solid var(--fire-orange);
+            box-shadow: 0 4px 20px rgba(255, 136, 0, 0.4);
             position: sticky; top: 0; z-index: 100;
         }
-        .header img { height: 60px; }
+        .header img { height: 90px; } /* ලොකුවට දාන්න */
 
-        /* Main Countdown Section */
+        /* 🕰️ Main Countdown Section (Dark & Glowing) */
         .main-timer {
             text-align: center;
-            padding: 50px 20px;
-            background: var(--white);
-            border-bottom: 1px solid #eee;
+            padding: 60px 20px;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid #222;
             margin-bottom: 30px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
             animation: fadeInDown 1s ease-out;
         }
-        .timer-title { color: var(--gold); font-size: 1.4rem; font-weight: bold; margin-bottom: 20px; }
-        .grid { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
-        .box { 
-            background: #f8f8f8; 
-            padding: 15px; 
-            border-radius: 10px; 
-            min-width: 75px; 
-            border: 1px solid #eee;
+        .timer-title { 
+            color: var(--fire-yellow); 
+            font-size: 1.4rem; 
+            font-weight: bold; 
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.6);
         }
-        .box span { font-size: 28px; font-weight: bold; display: block; color: #222; }
-        .box label { font-size: 10px; color: var(--gold); }
-
-        /* Accordion List */
-        .nakath-list { padding: 0 20px; max-width: 700px; margin: 0 auto; }
-        .acc-item {
-            background: var(--white);
-            margin-bottom: 15px;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-            border-left: 5px solid #ddd;
+        .grid { display: flex; justify-content: center; gap: 15px; }
+        .box { 
+            background-color: #000; 
+            padding: 20px; 
+            border-radius: 15px; 
+            min-width: 85px; 
+            border: 2px solid #333;
             transition: 0.3s;
-            animation: fadeInUp 0.8s ease;
+        }
+        .box:hover { border-color: var(--fire-orange); transform: translateY(-5px); box-shadow: 0 8px 20px rgba(255, 136, 0, 0.4); }
+        .box span { font-size: 32px; font-weight: bold; display: block; color: var(--fire-yellow); text-shadow: 0 0 8px rgba(255, 204, 0, 0.6); }
+        .box label { font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
+
+        .target-time-label {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 30px;
+            background: linear-gradient(45deg, var(--fire-red), var(--fire-orange));
+            color: white;
+            font-weight: bold;
+            border-radius: 50px;
+            font-size: 1rem;
+            box-shadow: 0 6px 15px rgba(255, 51, 51, 0.5);
+        }
+
+        /* 📜 Accordion Styles (Dark & Energetic) */
+        .nakath-list { padding: 0 20px; max-width: 750px; margin: 0 auto; }
+        .acc-item {
+            background-color: var(--card-bg);
+            margin-bottom: 15px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid #222;
+            transition: 0.3s;
+            animation: fadeInUp 0.8s ease-out;
         }
         .acc-header {
-            padding: 22px;
+            padding: 25px;
             display: flex; justify-content: space-between; align-items: center;
             cursor: pointer;
         }
         .acc-content {
-            padding: 0 25px;
+            padding: 0 30px;
             max-height: 0;
             overflow: hidden;
             transition: all 0.5s ease;
-            background: #fff;
-            color: #555;
+            background-color: #151515;
+            color: #ccc;
             font-size: 1rem;
             line-height: 1.8;
             text-align: justify;
         }
-        .acc-item.active { border-left-color: var(--gold); }
-        .acc-item.active .acc-content { padding: 20px 25px 30px; max-height: 600px; border-top: 1px solid #f5f5f5; }
+        .acc-item.active { border-color: var(--fire-orange); box-shadow: 0 0 20px rgba(255, 136, 0, 0.3); }
+        .acc-item.active .acc-content { padding: 20px 30px 35px; max-height: 600px; border-top: 1px solid #222; }
         
-        .n-title { font-weight: bold; color: #333; font-size: 1.1rem; }
-        .n-time-info { font-size: 0.85rem; color: var(--gold); margin-top: 5px; font-weight: bold; }
+        .n-title { font-weight: bold; color: var(--text-light); font-size: 1.15rem; }
+        .n-time-tag { font-size: 0.85rem; color: var(--fire-orange); margin-top: 5px; font-weight: bold; }
 
-        /* Floating Audio Bar */
+        /* 🎵 Music Player Bar (Dark & Colorful) */
         .audio-container {
             position: fixed; bottom: 0; width: 100%;
-            background: var(--white);
+            background-color: #000;
             padding: 20px;
-            border-top: 1px solid var(--gold);
+            border-top: 3px solid var(--fire-red);
             z-index: 1000;
             display: flex; flex-direction: column; align-items: center;
+            box-shadow: 0 -5px 20px rgba(255, 51, 51, 0.3);
+            backdrop-filter: blur(10px);
         }
-        audio { width: 100%; max-width: 600px; height: 35px; filter: grayscale(1) contrast(0.8); }
-        .song-name { color: var(--gold); font-size: 11px; margin-bottom: 5px; font-weight: bold; }
+        audio { width: 100%; max-width: 600px; height: 35px; filter: invert(1) hue-rotate(180deg) saturate(1.8) contrast(1.1); } /* Dark theme & fire colors */
+        .song-name { color: var(--fire-yellow); font-size: 12px; margin-bottom: 8px; font-weight: bold; text-shadow: 0 0 5px var(--fire-red); }
 
         /* Animations */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
     </style>
 </head>
 <body>
@@ -142,7 +186,7 @@
         <div class="box"><span id="m">00</span><label>මිනිත්තු</label></div>
         <div class="box"><span id="s">00</span><label>තත්පර</label></div>
     </div>
-    <div style="font-weight: bold; color: var(--gold);" id="target-display">අප්‍රේල් 14 පෙ.ව. 09:32</div>
+    <div class="target-time-label" id="target-display">අප්‍රේල් 14 පෙ.ව. 09:32</div>
 </div>
 
 <div class="nakath-list">
@@ -182,7 +226,7 @@
                     <div class="n-title">${n.name}</div>
                     <div class="n-time-info">${n.str}</div>
                 </div>
-                <div style="font-size: 10px; color: var(--gold);">DETAILS</div>
+                <div style="font-size: 11px; color: var(--fire-orange);">DETAILS</div>
             </div>
             <div class="acc-content">${n.desc}</div>
         `;
@@ -224,7 +268,7 @@
         audio.play();
     };
 
-    // 🕊️ Flying Birds Animation (चाम & Official)
+    // 🕊️ Flying Birds Animation (Dark/Fire Theme)
     const canvas = document.getElementById('animation-canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
@@ -235,21 +279,36 @@
         birds.push({ x: Math.random() * canvas.width, y: Math.random() * (canvas.height/2), s: Math.random() * 1.5 + 0.5, w: 0 });
     }
 
+    let particles = [];
+    for(let i=0; i<30; i++) {
+        particles.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*2, s: Math.random()*0.4 });
+    }
+
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
-        // Draw Birds (Simplified V-shape art)
-        ctx.strokeStyle = "rgba(197, 160, 89, 0.2)";
-        ctx.lineWidth = 2;
+        // Draw Particles (Soft Fire Orange)
+        ctx.fillStyle = "rgba(255, 136, 0, 0.3)";
+        particles.forEach(p => {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+            ctx.fill();
+            p.y += p.s;
+            if(p.y > canvas.height) p.y = -10;
+        });
+
+        // Draw Birds (Simplified V-shape, Dark Red)
+        ctx.strokeStyle = "rgba(255, 51, 51, 0.25)";
+        ctx.lineWidth = 2.5;
         birds.forEach(b => {
             ctx.beginPath();
-            let wingY = Math.sin(b.w) * 5;
+            let wingY = Math.sin(b.w) * 6;
             ctx.moveTo(b.x, b.y + wingY);
-            ctx.lineTo(b.x + 10, b.y);
-            ctx.lineTo(b.x + 20, b.y + wingY);
+            ctx.lineTo(b.x + 12, b.y);
+            ctx.lineTo(b.x + 24, b.y + wingY);
             ctx.stroke();
             b.x += b.s; b.w += 0.1;
-            if(b.x > canvas.width) b.x = -25;
+            if(b.x > canvas.width) b.x = -30;
         });
         requestAnimationFrame(animate);
     }
@@ -264,7 +323,7 @@
             screen.style.opacity = '0';
             setTimeout(() => screen.style.display = 'none', 1000);
             document.body.style.overflow = 'auto'; // Re-enable scrolling
-        }, 1500); // Show loading for at least 1.5 seconds
+        }, 1800); // Show loading for at least 1.8 seconds
     });
 </script>
 
